@@ -25,4 +25,5 @@ class Question(models.Model):
 
 class Answer(models.Model):
     answerText = models.CharField(max_length=200)
+    answerRank = models.IntegerField(primary_key=False, default=0)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
