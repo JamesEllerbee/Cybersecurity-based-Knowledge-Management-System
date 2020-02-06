@@ -1,8 +1,25 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Knowledge Base Home</h1>
-  <p>Welcome to the Knowledge Base</em>!</p>
+<!--Index buttons-->
+    <h1>Welcome to your company's knowledge base</h1>
+    <body>
+    <div class="row center">
+    <form method="post" action="">
+        {{ assetDropdown }}
+    </form>
+        <select>
+        {% for item in numAsset %}
+            <option value="{{ item.assetName }}">{{ item.assetName }}</option>
+        {% endfor %}
+        </select>
+    </div>
 
-
+<div id="div" class="row center">
+        <a href="question/" class="button">Ask a question</a>
+</div>
+    <div class="row center">
+        <a href="threats/" class="button">See common threats</a>
+    </div>
+    </body>
 {% endblock %}
