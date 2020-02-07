@@ -6,8 +6,10 @@
     <body>
     <div class="row center">
     <form method="post" action="">
+        {% csrf_token %}
+        <button type="radio" action="{% url 'question'%}">Ask Question</button>
+        <button type="radio">See common threats</button>
         {{ assetDropdown }}
-        
     </form>
 
     <select>
