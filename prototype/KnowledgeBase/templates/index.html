@@ -2,15 +2,12 @@
 
 {% block content %}
 <!--Index buttons-->
-<h1>Welcome to your company's knowledge base</h1>
-<body>
-<div class="row center">
-    
-    <form id="asset" method="post">
-        {% csrf_token %}
-        <button type="radio" action="{% url 'question'%}">Ask Question</button>
-        <button type="radio">See common threats</button>
+    <h1 style="font-family: candara;">Welcome to your company's knowledge base</h1>
+    <body>
+    <div class="row center">
+    <form method="post" action="">
         {{ assetDropdown }}
+        
     </form>
 
     <select>
