@@ -11,11 +11,14 @@ def index(request):
     Asset = assetDropdown()
     dropdown = {
         'numAsset':numAssets,
-        'Assets': Asset
+        'Assets': Asset,
+
     }
     return render(request, 'index.html', dropdown)
 
+@login_required
 def question(request):
+    print(request.GET)
     if request.method == "POST":
         
         questionString = request.POST["question"]
@@ -24,3 +27,9 @@ def question(request):
     else:
         searchForm = inputTextField()
         return render(request, 'question.html', {"inputTextField": searchForm})
+
+@login_required
+def threats(request):
+    if request == "POST":
+        whatThreat = request.POST["assets"]
+    return

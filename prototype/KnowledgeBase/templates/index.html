@@ -2,24 +2,30 @@
 
 {% block content %}
 <!--Index buttons-->
-    <h1>Welcome to your company's knowledge base</h1>
-    <body>
-    <div class="row center">
-    <form method="post" action="">
+<h1>Welcome to your company's knowledge base</h1>
+<body>
+<div class="row center">
+    
+    <form id="asset" method="post">
+        {% csrf_token %}
+        <button type="radio" action="{% url 'question'%}">Ask Question</button>
+        <button type="radio">See common threats</button>
         {{ assetDropdown }}
     </form>
-        <select>
-        {% for item in numAsset %}
-            <option value="{{ item.id}}">{{ item.assetName }}</option>
-        {% endfor %}
-        </select>
-    </div>
 
-<div id="div" class="row center">
-        <a href="question/" class="button">Ask a question</a>
+    <select>
+    {% for item in numAsset %}
+        <option value="{{ item.id}}">{{ item.assetName }}</option>
+    {% endfor %}
+    </select>
 </div>
-    <div class="row center">
-        <a href="threats/" class="button">See common threats</a>
-    </div>
-    </body>
+<!--
+<div id="div" class="row center">
+    <a href="question/" class="button">Ask a question</a>
+</div>
+<div class="row center">
+    <a href="threats/" class="button">See common threats</a>
+</div>
+-->
+</body>
 {% endblock %}
