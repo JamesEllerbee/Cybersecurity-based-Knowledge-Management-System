@@ -2,22 +2,22 @@
 
 {% block content %}
 <!--Index buttons-->
-    <h1 style="font-family: candara;">Welcome to your company's knowledge base</h1>
-    <body>
+<h1 style="font-family: candara;">Welcome to your company's knowledge base</h1>
+<body>
     <div class="row center">
-    <form method="post" action="">
-        {% csrf_token %}
-        <button type="radio" action="{% url 'question'%}">Ask Question</button>
-        <button type="radio">See common threats</button>
-        {{ assetDropdown }}
-    </form>
-
-    <select>
-    {% for item in numAsset %}
-        <option value="{{ item.id}}">{{ item.assetName }}</option>
-    {% endfor %}
-    </select>
-</div>
+        <form id="assetDropdown" action="{% url 'question'%}" method="post" action="">
+            {% csrf_token %}
+            {{ assetDropdown }}
+            <select name=selectedElement>
+                {% for item in numAsset %}
+                    <option value="{{ item.id}}">{{ item.assetName }}</option>
+                {% endfor %}
+                </select>
+        </form>
+        
+        <button type="submit" form="assetDropdown">Ask Question</button>
+        <button type="submit" formaction="{% url 'threats' %}" form="assetDropdown">See common threats</button>
+    </div>
 <!--
 <div id="div" class="row center">
     <a href="question/" class="button">Ask a question</a>

@@ -12,24 +12,22 @@ def index(request):
     dropdown = {
         'numAsset':numAssets,
         'Assets': Asset,
-
     }
     return render(request, 'index.html', dropdown)
 
 @login_required
 def question(request):
-    print(request.GET)
-    if request.method == "POST":
-        
-        questionString = request.POST["question"]
-        #TODO write serach algo here
-        return render(request, 'filler.html', {"output" : questionString}) #change 'filler.html' to a results page and provide the serach results as the context- Joey
-    else:
-        searchForm = inputTextField()
-        return render(request, 'question.html', {"inputTextField": searchForm})
+    assetID = request.POST["selectedElement"]
+    #TODO need to pull asset form DB
+    questionInputField = inputTextField()
+    context = {
+        "selectedAsset":assetID, #TODO change to information pulled from database
+        "inputTextField":questionInputField,
+    }
+    return render(request, 'question.html', context)
+
 
 @login_required
 def threats(request):
-    if request == "POST":
-        whatThreat = request.POST["assets"]
-    return
+    whatThreat = request.POST["assets"]
+    return render(request)
