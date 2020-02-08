@@ -29,5 +29,5 @@ def question(request):
 
 @login_required
 def threats(request):
-    whatThreat = request.POST["assets"]
+    assetID = request.POST["selectedElement"]
     return render(request)
