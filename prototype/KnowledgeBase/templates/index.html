@@ -5,7 +5,7 @@
 <h1 style="font-family: candara;">Welcome to your company's knowledge base</h1>
 <body>
     <div class="row center">
-        <form id="assetDropdown" action="{% url 'question'%}" method="post" action="">
+        <form id="assetDropdown" action="{% url 'question'%}" method="post">
             {% csrf_token %}
             {{ assetDropdown }}
             <select name=selectedElement>

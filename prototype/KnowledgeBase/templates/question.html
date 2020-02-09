@@ -1,11 +1,10 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<strong>Search question realted to asset: </strong> 
-<br>
-{{ selectedAsset }}
-<form method="post" action="">
+<strong>Enter question related to asset: </strong> {{ selectedAsset }}
+<form id="questionInput" method="post" action="{% url 'answer' %}">
     {% csrf_token %}
     {{ inputTextField }}
 </form>
+<button type="submit" form="questionInput" >Search</button>
 {% endblock %}

@@ -19,9 +19,22 @@ def index(request):
     }
     return render(request, 'index.html', dropdown)
 
+def answer(request):
+    #TODO implement seraching algo. and return results
+    if request.method == "POST":
+        print(request.POST)
+        question = request.POST["question"]
+        context = {
+            'function':'Search Results functionality',
+            'output': "question = " + question
+        }
+        return render(request, 'filler.html', context)
+    else:#method == "GET"
+        return render(request, 'error.html', {'errorMessage': 'Unexpected request for this page'})
+
+
 @login_required
 def question(request):
-    #TODO do something with the question. right submitting the text form goes back to this, but we might want to consider going to a different function since POST method is already does something here. -joey
     if request.method == "POST":
         assetID = request.POST["selectedElement"]
         assetName = get_object_or_404(dbAsset, id = assetID)
@@ -32,8 +45,8 @@ def question(request):
             "inputTextField":questionInputField,
         }
         return render(request, 'question.html', context)
-    else:
-        return render(request, 'error.html', {'errorMessage':'Unexpected request'})
+    else:#method == "GET"
+        return render(request, 'error.html', {'errorMessage':'Unexpected request for this page'})
 
 @login_required
 def threats(request):
