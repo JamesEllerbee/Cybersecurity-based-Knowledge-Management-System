@@ -17,7 +17,7 @@ def index(request):
 
 @login_required
 def question(request):
-    if request == "POST":
+    if request.method == "POST":
         assetID = request.POST["selectedElement"]
         #TODO need to pull asset form DB
         questionInputField = inputTextField()
@@ -26,8 +26,9 @@ def question(request):
             "inputTextField":questionInputField,
         }
         return render(request, 'question.html', context)
+
     else:
-        return(request, 'error.html', {'errorMessage':'Unexpected request'})
+        return render(request, 'error.html', {'errorMessage':'Unexpected request'})
 
 
 @login_required
