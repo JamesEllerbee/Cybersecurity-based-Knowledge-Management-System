@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Here are the common threats for the selected asset</h1>
+<strong>Selected asset:</strong> {{ selectedAsset }} <br>
+<strong>Common Threats:</strong> <br>
+{% for threat in threats %}
+    {{threat}}
+    <br>
+    {% endfor %}
+{% endblock %}
