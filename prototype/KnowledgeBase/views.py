@@ -17,17 +17,20 @@ def index(request):
 
 @login_required
 def question(request):
-    assetID = request.POST["selectedElement"]
-    #TODO need to pull asset form DB
-    questionInputField = inputTextField()
-    context = {
-        "selectedAsset":assetID, #TODO change to information pulled from database
-        "inputTextField":questionInputField,
-    }
-    return render(request, 'question.html', context)
+    if request == POST:
+        assetID = request.POST["selectedElement"]
+        #TODO need to pull asset form DB
+        questionInputField = inputTextField()
+        context = {
+            "selectedAsset":assetID, #TODO change to information pulled from database
+            "inputTextField":questionInputField,
+        }
+        return render(request, 'question.html', context)
+    else:
+        return(request, 'error.html', {'errorMessage':'Unexpected request'})
 
 
 @login_required
 def threats(request):
     assetID = request.POST["selectedElement"]
-    return render(request)
+    return render(request, 'filler.html', {'function':'Common threats','output':'assetID =' + assetID})
