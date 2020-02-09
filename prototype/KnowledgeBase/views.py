@@ -17,7 +17,7 @@ def index(request):
 
 @login_required
 def question(request):
-    if request == POST:
+    if request == "POST":
         assetID = request.POST["selectedElement"]
         #TODO need to pull asset form DB
         questionInputField = inputTextField()
