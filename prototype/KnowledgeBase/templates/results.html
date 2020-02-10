@@ -1,0 +1,10 @@
+<!-- This is a document used to fill in parts that aren't developed yet -->
+{% extends "base_generic.html" %}
+{% block content %}
+    Question: {{ output }}
+<br>
+    {% for elements in questions%}
+    <li> {{ elements }}</li>
+    {% endfor %}
+<br>
+{% endblock%}

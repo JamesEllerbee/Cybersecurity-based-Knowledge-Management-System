@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<!--Index buttons-->
+<h1 style="font-family: candara;">Welcome to your company's knowledge base</h1>
+<body>
+    <div class="row center">
+        <form id="assetDropdown" action="{% url 'question'%}" method="post">
+            {% csrf_token %}
+            {{ assetDropdown }}
+            <select name=selectedElement>
+                {% for item in numAsset %}
+                    <option value="{{ item.id}}">{{ item.assetName }}</option>
+                {% endfor %}
+                </select>
+        </form>
+        
+        <button type="submit" form="assetDropdown">Ask Question</button>
+        <button type="submit" formaction="{% url 'threats' %}" form="assetDropdown">See common threats</button>
+    </div>
+<!--
+<div id="div" class="row center">
+    <a href="question/" class="button">Ask a question</a>
+</div>
+<div class="row center">
+    <a href="threats/" class="button">See common threats</a>
+</div>
+-->
+</body>
+{% endblock %}
