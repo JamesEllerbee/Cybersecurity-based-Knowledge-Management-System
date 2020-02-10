@@ -1,9 +1,10 @@
 <!-- This is a document used to fill in parts that aren't developed yet -->
 {% extends "base_generic.html" %}
 {% block content %}
-<h1>{{ function }} in development</h1>
+    Question: {{ output }}
 <br>
-<strong>Here was the output/input:</strong>
+    {% for elements in questions%}
+    <li> {{ elements }}</li>
+    {% endfor %}
 <br>
-{{output}}
 {% endblock%}

@@ -2,7 +2,7 @@
 
 {% block content %}
 <strong>Enter question related to asset: </strong> {{ selectedAsset }}
-<form id="questionInput" method="post" action="{% url 'answer' %}">
+<form id="questionInput" method="post" action="{% url 'results' %}">
     {% csrf_token %}
     {{ inputTextField }}
 </form>
