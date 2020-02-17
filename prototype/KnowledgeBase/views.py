@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 # rom .forms import assetDropdown
 from .forms import *
@@ -24,6 +24,7 @@ def index(request):
 def results(request):
     if request.method == "POST":
         question = request.POST["question"]
+        request.session['QT'] = question
         assetID = request.session['AID']
         context = {
             'function': 'Search Results functionality',
@@ -76,17 +77,13 @@ def answer(request, question_id):
 
 def submitQuestion(request):
     if request.method == "GET":
-        assetID = request.session['AID']
-        question = inputTextField()
-        context = {
-            "selectedAsset": get_list_or_404(dbAsset, id=assetID),
-            "inputTextField": question
-        }
         questionEntry = Question()
+        assetID = request.session['AID']
+        question = request.session['QT']
         questionEntry.assetKey = get_object_or_404(dbAsset, id=assetID)
         questionEntry.questionText = question
         questionEntry.save()
 
-        return render(request, 'submitQuestion.html', context)
+        return HttpResponseRedirect('/')
     else:
         return render(request, 'error.html', {'errorMessage': 'Unexpected request for this page'})
