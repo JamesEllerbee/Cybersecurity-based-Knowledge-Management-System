@@ -6,6 +6,7 @@ urlpatterns = [
     path('question/', views.question, name='question'),
     path('threats/', views.threats, name='threats'),
     path('results/', views.results, name='results'),
-    path('answer/', views.answer, name='answer'),
+    path('results/<int:question_id>/answer/', views.answer, name='answer'),
+    path('results/submitQuestion/', views.submitQuestion, name='submitQuestion'),
 ]
 
