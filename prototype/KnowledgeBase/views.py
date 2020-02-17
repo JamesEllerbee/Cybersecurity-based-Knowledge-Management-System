@@ -57,7 +57,6 @@ def question(request):
 
 @login_required
 def threats(request):
-    
     assetID = request.POST["selectedElement"]
     assetName = get_object_or_404(dbAsset, id=assetID)
     threats = get_list_or_404(assetThreat, assetKey=assetName)
@@ -67,14 +66,16 @@ def threats(request):
         'threats': threats,
     }
     return render(request, 'common-threats.html', context)
-    
+
+
 def answer(request, question_id):
     questionText = Question.objects.get(id=question_id).questionText
     context = {
-        "question":questionText,
-        "answers":Answer.objects.all().filter(question=question_id).order_by('-answerRank'),
+        "question": questionText,
+        "answers": Answer.objects.all().filter(question=question_id).order_by('-answerRank'),
     }
     return render(request, 'answer.html', context)
+
 
 def submitQuestion(request):
     if request.method == "GET":
@@ -88,8 +89,7 @@ def submitQuestion(request):
         return HttpResponseRedirect('/')
     else:
         return render(request, 'error.html', {'errorMessage': 'Unexpected request for this page'})
-#class ThreatListView(generic.ListView):
- #   model = Threat
+
 
 class ThreatDetailView(generic.DetailView):
     model = assetThreat

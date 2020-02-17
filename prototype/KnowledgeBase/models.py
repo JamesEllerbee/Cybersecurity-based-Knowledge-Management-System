@@ -25,10 +25,11 @@ class Advice(models.Model):
     def __str__(self):
         return self.adviceText
 
+
 class Threat(models.Model):
     threatName = models.CharField(max_length=100)
     assetKey = models.ForeignKey(Asset, on_delete=models.CASCADE)
-    adviceKey = models.ForeignKey(Advice, on_delete=models.CASCADE)
+    adviceKey = models.ForeignKey(Advice, on_delete=models.PROTECT, null=True)
 
     class meta:
         managed = False
@@ -36,6 +37,7 @@ class Threat(models.Model):
 
     def __str__(self):
         return self.threatName
+
 
 class Question(models.Model):
     questionText = models.CharField(max_length=200)
