@@ -2,8 +2,8 @@
 {% block content %}
     Question: {{ question }}
 <br>
-    {% for elements in answers%}
-        {{ elements.answerText}}
+    {% for element in answers%}
+        {{ element}} {{ element.answerRank }}<br>
     {% endfor %}
 <br>
 {% endblock%}

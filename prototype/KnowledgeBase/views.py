@@ -66,10 +66,10 @@ def threats(request):
 
 
 def answer(request, question_id):
-    questionText = Question.get(question_id)
+    questionText = Question.objects.get(id=question_id).questionText
     context = {
-        "question":questionText.questionText,
-        "answers":get_object_or_404(Answer, question_id),
+        "question":questionText,
+        "answers":Answer.objects.all().filter(question=question_id).order_by('-answerRank'),
     }
     return render(request, 'answer.html', context)
 
