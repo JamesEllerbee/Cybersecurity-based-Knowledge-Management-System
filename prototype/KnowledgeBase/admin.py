@@ -13,7 +13,7 @@ class questionAdmin(admin.ModelAdmin):
 
 
 class threatAdmin(admin.ModelAdmin):
-    list_display = ("assetKey", "threatName",)
+    list_display = ("assetKey", "threatName", "adviceKey")
 
 
 class answerAdmin(admin.ModelAdmin):
@@ -21,7 +21,7 @@ class answerAdmin(admin.ModelAdmin):
 
 
 class adviceAdmin(admin.ModelAdmin):
-    list_display = ("threatKey", "adviceText",)
+    list_display = ("adviceText",)
 
 
 admin.site.register(Asset, assetAdmin)

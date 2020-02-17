@@ -2,6 +2,12 @@
 
 {% block content %}
 
-<p>This is the detail view</p>
+<h1>This is the detail view</h1>
+<strong>Threat:</strong> {{object.threatName}}
+<br>
+<strong>Asset:</strong> {{object.assetKey}}
+<br>
+<strong>Advice:</strong> {{object.adviceKey}}
+
 {% endblock %}
 
