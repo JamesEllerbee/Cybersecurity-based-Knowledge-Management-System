@@ -5,7 +5,7 @@
 <strong>Selected asset:</strong> {{ selectedAsset }} <br>
 <strong>Common Threats:</strong> <br>
 {% for threat in threats %}
-    {{threat}}
+    <a href="{% url 'threat-detail' threat.id %}">{{threat}}</a>
     <br>
     {% endfor %}
     For more information please call the company's IT department at: 555-867-5309

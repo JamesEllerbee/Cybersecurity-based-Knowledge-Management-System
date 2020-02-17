@@ -8,5 +8,7 @@ urlpatterns = [
     path('results/', views.results, name='results'),
     path('results/<int:question_id>/answer/', views.answer, name='answer'),
     path('results/submitQuestion/', views.submitQuestion, name='submitQuestion'),
+    path('answer/', views.answer, name='answer'),
+    #path('threats/', views.ThreatListView.as_view(), name='threats'),
+    path('threat/<int:pk>', views.ThreatDetailView.as_view(), name='threat-detail'),
 ]
-
