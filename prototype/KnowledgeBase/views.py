@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.views import generic
 # rom .forms import assetDropdown
 from .forms import *
 from .models import Asset as dbAsset
@@ -55,14 +56,24 @@ def question(request):
 
 @login_required
 def threats(request):
+    
     assetID = request.POST["selectedElement"]
     assetName = get_object_or_404(dbAsset, id=assetID)
     threats = get_list_or_404(assetThreat, assetKey=assetName)
     context = {
+
         'selectedAsset': assetName,
         'threats': threats,
     }
     return render(request, 'common-threats.html', context)
+    
+
 
 def answer(request):
     return render(request, 'answer.html')
+
+#class ThreatListView(generic.ListView):
+ #   model = Threat
+
+class ThreatDetailView(generic.DetailView):
+    model = assetThreat
