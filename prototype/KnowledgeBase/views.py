@@ -70,8 +70,11 @@ def threats(request):
 
 def answer(request, question_id):
     questionText = Question.objects.get(id=question_id).questionText
+    request.session['QID'] = question_id
+    answerSubmission = inputTextField()
     context = {
         "question": questionText,
+        "answerSub": answerSubmission,
         "answers": Answer.objects.all().filter(question=question_id).order_by('-answerRank'),
     }
     return render(request, 'answer.html', context)
@@ -93,3 +96,11 @@ def submitQuestion(request):
 
 class ThreatDetailView(generic.DetailView):
     model = assetThreat
+
+
+def submitAnswer(request, question_id):
+    if request == 'POST':
+        answerSub = inputTextField()
+        return render(request, 'submitAnswer.html')
+    else:
+        return render(request, 'error.html', {'errorMessage': 'Unexpected request for this page'})
