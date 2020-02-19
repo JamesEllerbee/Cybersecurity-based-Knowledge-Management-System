@@ -15,21 +15,8 @@ class Asset(models.Model):
         return self.assetName
 
 
-class Threat(models.Model):
-    threatName = models.CharField(max_length=100)
-    assetKey = models.ForeignKey(Asset, on_delete=models.CASCADE)
-
-    class meta:
-        managed = False
-        db_table = 'threat'
-
-    def __str__(self):
-        return self.threatName
-
-
 class Advice(models.Model):
     adviceText = models.CharField(max_length=200)
-    threatKey = models.ForeignKey(Threat, on_delete=models.CASCADE)
 
     class meta:
         managed = False
@@ -37,6 +24,19 @@ class Advice(models.Model):
 
     def __str__(self):
         return self.adviceText
+
+
+class Threat(models.Model):
+    threatName = models.CharField(max_length=100)
+    assetKey = models.ForeignKey(Asset, on_delete=models.CASCADE)
+    adviceKey = models.ForeignKey(Advice, on_delete=models.PROTECT, null=True)
+
+    class meta:
+        managed = False
+        db_table = 'threat'
+
+    def __str__(self):
+        return self.threatName
 
 
 class Question(models.Model):

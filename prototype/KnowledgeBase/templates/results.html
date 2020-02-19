@@ -4,7 +4,9 @@
     Question: {{ output }}
 <br>
     {% for elements in questions%}
-    <li> {{ elements }}</li>
+        <a href="{{ elements.id }}/answer">{{ elements }}</a><br>
     {% endfor %}
 <br>
+    Don't see your question?<br>
+    <a href="submitQuestion">Submit it</a>
 {% endblock%}

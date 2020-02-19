@@ -1,0 +1,9 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    Question: {{ question }}
+<br>
+    {% for element in answers%}
+        {{ element}} {{ element.answerRank }}<br>
+    {% endfor %}
+<br>
+{% endblock%}

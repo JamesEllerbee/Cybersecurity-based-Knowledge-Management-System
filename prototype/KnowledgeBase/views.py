@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.views import generic
 # rom .forms import assetDropdown
 from .forms import *
-from .models import Asset as dbAsset
+from .models import Asset as dbAsset, Question, Answer
 from .models import Threat as assetThreat
 from .models import Question as dbQuestion
 from django.shortcuts import get_object_or_404  # used for rapid development, can change later -joey
@@ -24,10 +25,11 @@ def index(request):
 def results(request):
     if request.method == "POST":
         question = request.POST["question"]
+        request.session['QT'] = question
         assetID = request.session['AID']
         context = {
             'function': 'Search Results functionality',
-            'output':  question,
+            'output': question,
             'questions': dbQuestion.objects.filter(assetKey=assetID, questionText__contains=question)
 
         }
@@ -59,10 +61,35 @@ def threats(request):
     assetName = get_object_or_404(dbAsset, id=assetID)
     threats = get_list_or_404(assetThreat, assetKey=assetName)
     context = {
+
         'selectedAsset': assetName,
         'threats': threats,
     }
     return render(request, 'common-threats.html', context)
 
-def answer(request):
-    return render(request, 'answer.html')
+
+def answer(request, question_id):
+    questionText = Question.objects.get(id=question_id).questionText
+    context = {
+        "question": questionText,
+        "answers": Answer.objects.all().filter(question=question_id).order_by('-answerRank'),
+    }
+    return render(request, 'answer.html', context)
+
+
+def submitQuestion(request):
+    if request.method == "GET":
+        questionEntry = Question()
+        assetID = request.session['AID']
+        question = request.session['QT']
+        questionEntry.assetKey = get_object_or_404(dbAsset, id=assetID)
+        questionEntry.questionText = question
+        questionEntry.save()
+
+        return HttpResponseRedirect('/')
+    else:
+        return render(request, 'error.html', {'errorMessage': 'Unexpected request for this page'})
+
+
+class ThreatDetailView(generic.DetailView):
+    model = assetThreat

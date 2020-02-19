@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Threat List</h1>
+  {% if threat_list %}
+  <ul>
+    {% for book in book_list %}
+      <li>
+        <a href="{{ threat.get_absolute_url }}">{{ threat.threatName }}</a> ({{threat.assetKey}})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no threats listed.</p>
+  {% endif %}       
+{% endblock %}
