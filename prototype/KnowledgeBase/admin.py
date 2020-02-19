@@ -17,7 +17,7 @@ class threatAdmin(admin.ModelAdmin):
 
 
 class answerAdmin(admin.ModelAdmin):
-    list_display = ("question", "answerText",)
+    list_display = ("question", "answerText","answerRank")
 
 
 class adviceAdmin(admin.ModelAdmin):
