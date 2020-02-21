@@ -6,4 +6,6 @@
         {{ element}} {{ element.answerRank }}<br>
     {% endfor %}
 <br>
+    <form id="newAns" method="post" action="{% url 'submitAnswer' 0 %}" >{% csrf_token %}</form>
+    <button type="submit" form="newAns">Submit an answer</button>
 {% endblock%}

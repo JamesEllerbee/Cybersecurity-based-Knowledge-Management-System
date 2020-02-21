@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<strong>Enter answer</strong>
+<form id="answerInput" method="post">
+    {% csrf_token %}
+    {{ inputTextField }}
+</form>
+<button type="submit" form="answerInput" >Submit</button>
+{% endblock %}
