@@ -1,12 +1,8 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-
-<h1>This is the detail view</h1>
-<strong>Threat:</strong> {{object.threatName}}
-<br>
-<strong>Asset:</strong> {{object.assetKey}}
-<br>
+<strong>Threat:</strong> {{object.threatName}} <br>
+<strong>Asset:</strong> {{object.assetKey}} <br>
 <strong>Advice:</strong> {{object.adviceKey}}
 
 {% endblock %}
