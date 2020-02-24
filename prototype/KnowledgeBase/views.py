@@ -44,11 +44,11 @@ def question(request):
         assetID = request.POST["selectedElement"]
         request.session['AID'] = assetID
         assetName = get_object_or_404(dbAsset, id=assetID)
-        questionInputField = inputTextField()
+        form = questionInputTextField()
 
         context = {
             "selectedAsset": assetName,
-            "inputTextField": questionInputField,
+            "questionInputTextField": form,
         }
         return render(request, 'question.html', context)
     else:  # method == "GET"
@@ -91,8 +91,14 @@ def submitQuestion(request):
         return render(request, 'error.html', {'errorMessage': 'Unexpected request for this page'})
 
 @login_required
-def submitThreat(request):
-    return render(request, 'threat-form.html')
+def submitThreat(request, assetName):
+
+    context = {
+        "threatInputTextField" : threatInputTextFiled(),
+        "selectedAsset" : assetName,
+    }
+    return render(request, 'threat-form.html', context)
+
 
 class ThreatDetailView(generic.DetailView):
     model = assetThreat

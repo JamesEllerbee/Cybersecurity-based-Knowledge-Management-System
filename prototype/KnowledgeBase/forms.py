@@ -1,7 +1,6 @@
 from django import forms
 from .models import Asset
 
-
 class assetDropdown(forms.Form):
     assets = forms.ModelChoiceField(
         queryset=Asset.objects.values_list("assetName").distinct(),
@@ -9,9 +8,12 @@ class assetDropdown(forms.Form):
         empty_label=None
     )
 
-
-class inputTextField(forms.Form):
+class questionInputTextField(forms.Form):
     question = forms.CharField(label="Enter Question Here:", max_length=100)
+
+class threatInputTextFiled(forms.Form):
+    treat = forms.CharField(label="Threat Name:", max_length=100)
+
 
 
 
