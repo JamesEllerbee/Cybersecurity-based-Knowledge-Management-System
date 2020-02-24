@@ -99,6 +99,13 @@ def submitThreat(request, assetName):
     }
     return render(request, 'threat-form.html', context)
 
+@login_required
+def addNewThreat(request, theAssetName):
+    threatEntry = assetThreat()
+    threatEntry.threatName = request.POST["threat"]
+    threatEntry.assetKey = get_object_or_404(dbAsset, assetName=theAssetName)
+    threatEntry.save()
+    return HttpResponseRedirect("/")
 
 class ThreatDetailView(generic.DetailView):
     model = assetThreat

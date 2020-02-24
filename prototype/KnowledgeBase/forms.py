@@ -12,7 +12,7 @@ class questionInputTextField(forms.Form):
     question = forms.CharField(label="Enter Question Here:", max_length=100)
 
 class threatInputTextFiled(forms.Form):
-    treat = forms.CharField(label="Threat Name:", max_length=100)
+    threat = forms.CharField(label="Threat Name:", max_length=100)
 
 
 
