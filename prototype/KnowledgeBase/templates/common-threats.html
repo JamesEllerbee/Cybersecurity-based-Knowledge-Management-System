@@ -7,6 +7,7 @@
 {% for threat in threats %}
     <a href="{% url 'threat-detail' threat.id %}">{{threat}}</a>
     <br>
-    {% endfor %}
-    For more information please call the company's IT department at: 555-867-5309
+{% endfor %}
+Have a threat not listed? <a href="./submitThreat/">Submit Threat</a>
+For more information please call the company's IT department at: 555-867-5309
 {% endblock %}

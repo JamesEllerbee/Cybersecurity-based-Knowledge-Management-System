@@ -76,7 +76,7 @@ def answer(request, question_id):
     }
     return render(request, 'answer.html', context)
 
-
+@login_required
 def submitQuestion(request):
     if request.method == "GET":
         questionEntry = Question()
@@ -90,6 +90,9 @@ def submitQuestion(request):
     else:
         return render(request, 'error.html', {'errorMessage': 'Unexpected request for this page'})
 
+@login_required
+def submitThreat(request):
+    return render(request, 'threat-form.html')
 
 class ThreatDetailView(generic.DetailView):
     model = assetThreat
