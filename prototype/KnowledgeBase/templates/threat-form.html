@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>Submit new threat</h1>
+Submitting for asset: {{ selectedAsset }}
+<form id="threatInput" method="post" action="{% url 'threatSubmitResult' selectedAsset %}">
+    {% csrf_token %}
+    {{ threatInputTextField }}
+</form>
+<button type="submit" form="threatInput">Submit</button>
+{% endblock %}

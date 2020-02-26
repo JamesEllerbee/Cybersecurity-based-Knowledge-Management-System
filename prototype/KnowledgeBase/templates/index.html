@@ -12,7 +12,7 @@
                 {% for item in numAsset %}
                     <option value="{{ item.id}}">{{ item.assetName }}</option>
                 {% endfor %}
-                </select>
+            </select>
         </form>
     </div>
     <div class="row center">
@@ -21,13 +21,5 @@
     <div class="row center">
         <button type="submit" formaction="{% url 'threats' %}" form="assetDropdown">See common threats</button>
     </div>
-<!--
-<div id="div" class="row center">
-    <a href="question/" class="button">Ask a question</a>
-</div>
-<div class="row center">
-    <a href="threats/" class="button">See common threats</a>
-</div>
--->
 </body>
 {% endblock %}
