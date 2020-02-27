@@ -1,14 +1,14 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Here are the common threats for the selected asset</h1>
-<strong>Selected asset:</strong> {{ selectedAsset }} <br>
+<h1>Here are the common threats for the selected asset</h1><br>
+<strong>Selected asset:</strong> <h3> {{ selectedAsset }} </h3><br>
 <strong>Common Threats:</strong> <br>
 {% for threat in threats %}
-    <a href="{% url 'threat-detail' threat.id %}">{{threat}}</a>
-    <br>
+    <a class="btn btn-warning" style="background-color:palegoldenrod; border-color:palegoldenrod;" href="{% url 'threat-detail' threat.id %}">{{threat}}</a>
+    <br><br>
 {% endfor %}
-Know a threat not listed?
-<a href="{% url 'submitThreat' selectedAsset %}">Submit Threat</a>
-For more information please call the company's IT department at: 555-867-5309
+<br><br><br><br>Know a threat not listed?
+<a class="btn btn-warning" style="background-color:springgreen; border-color: springgreen" href="{% url 'submitThreat' selectedAsset %}">Submit Threat</a>
+<br><br>For more information please call the company's IT department at: 555-867-5309
 {% endblock %}

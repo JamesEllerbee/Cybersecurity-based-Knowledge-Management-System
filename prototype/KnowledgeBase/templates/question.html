@@ -1,10 +1,10 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<strong>Enter question related to asset: </strong> {{ selectedAsset }}
-<form id="questionInput" method="post" action="{% url 'results' %}">
+<strong>Enter question related to asset: </strong> {{ selectedAsset }} <br><br>
+<div style="background-color:palegoldenrod; border-color:palegoldenrod; border-width:10px; border-radius:4px; padding:2px"><form id="questionInput" method="post" action="{% url 'results' %}">
     {% csrf_token %}
     {{ questionInputTextField }}
-</form>
-<button type="submit" form="questionInput" >Search</button>
+</form></div><br>
+<button style="background-color:palegoldenrod; border-color:palegoldenrod;" class="btn btn-warning" type="submit" form="questionInput" >Search</button>
 {% endblock %}
