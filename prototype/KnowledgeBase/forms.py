@@ -13,7 +13,3 @@ class questionInputTextField(forms.Form):
 
 class threatInputTextFiled(forms.Form):
     threat = forms.CharField(label="Threat Name:", max_length=100)
-
-
-
-
