@@ -7,6 +7,7 @@ from .forms import *
 from .models import Asset as dbAsset, Question, Answer
 from .models import Threat as assetThreat
 from .models import Question as dbQuestion
+from .models import Answer as dbAnswer
 from django.shortcuts import get_object_or_404  # used for rapid development, can change later -joey
 from django.shortcuts import get_list_or_404  # used for pulling multiple objects from the db - joey
 
@@ -45,7 +46,6 @@ def question(request):
         request.session['AID'] = assetID
         assetName = get_object_or_404(dbAsset, id=assetID)
         form = questionInputTextField()
-
         context = {
             "selectedAsset": assetName,
             "questionInputTextField": form,
@@ -70,9 +70,17 @@ def threats(request):
 
 def answer(request, question_id):
     questionText = Question.objects.get(id=question_id).questionText
+    currentUser = request.user
+    answerForm = None
+    if currentUser.is_superuser: #todo, change this to however we're going to keep up with whether a user can post or not - jo
+        answerForm = answerInputTextField()
     context = {
+        "questionId": question_id,
         "question": questionText,
         "answers": Answer.objects.all().filter(question=question_id).order_by('-answerRank'),
+        "user": currentUser,
+        "isSuperUser": currentUser.is_superuser,
+        "answerForm": answerForm,
     }
     return render(request, 'answer.html', context)
 
@@ -85,17 +93,15 @@ def submitQuestion(request):
         questionEntry.assetKey = get_object_or_404(dbAsset, id=assetID)
         questionEntry.questionText = question
         questionEntry.save()
-
         return HttpResponseRedirect('/')
     else:
         return render(request, 'error.html', {'errorMessage': 'Unexpected request for this page'})
 
 @login_required
 def submitThreat(request, assetName):
-
     context = {
-        "threatInputTextField" : threatInputTextFiled(),
-        "selectedAsset" : assetName,
+        "threatInputTextField": threatInputTextField(),
+        "selectedAsset": assetName,
     }
     return render(request, 'threat-form.html', context)
 
@@ -106,6 +112,20 @@ def addNewThreat(request, theAssetName):
     threatEntry.assetKey = get_object_or_404(dbAsset, assetName=theAssetName)
     threatEntry.save()
     return HttpResponseRedirect("/")
+
+def addNewAnswer(request, question_id):
+    if request == "GET":
+        return render(request, 'error.html', {'errorMessage': 'Unexpected request for this page'})
+    answerText = request.POST["answer"]
+    questionObj = get_object_or_404(dbQuestion, id=question_id)
+    answerEntry = dbAnswer()
+    answerEntry.answerText = answerText
+    answerEntry.question = questionObj
+    answerEntry.save()
+    context = {
+        "response": answerText,
+    }
+    return render(request, 'submission-success.html', context)
 
 class ThreatDetailView(generic.DetailView):
     model = assetThreat

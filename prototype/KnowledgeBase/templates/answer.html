@@ -9,7 +9,17 @@
     <div style="align-self:flex-start; border-style: dashed; border-color:mistyrose; border-width: 2px; padding: 2px;">
         {{ element}} {{ element.answerRank }}<br>
     </div>
+    <br>
     {% endfor %}
-
 <br>
+
+{% if isSuperUser %}
+Welcome {{ user }}, want to submit a new answer? <br>
+<form id="answerInput" method="post" action="{% url 'submitAnswer' questionId %}">
+    {% csrf_token %}
+    {{ answerForm }}
+</form>
+<button type="submit" form="answerInput">Submit New Answer</button>
+{% endif %}
+
 {% endblock%}

@@ -9,6 +9,7 @@ urlpatterns = [
     path('threats/submitTreat/<str:theAssetName>/submitSuccess', views.addNewThreat, name='threatSubmitResult'),
     path('results/', views.results, name='results'),
     path('results/<int:question_id>/answer/', views.answer, name='answer'),
+    path('results/answer/<int:question_id>/submitSuccess/', views.addNewAnswer, name='submitAnswer'),
     path('results/submitQuestion/', views.submitQuestion, name='submitQuestion'),
     path('answer/', views.answer, name='answer'),
     #path('threats/', views.ThreatListView.as_view(), name='threats'),
