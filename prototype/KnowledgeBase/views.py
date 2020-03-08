@@ -57,6 +57,7 @@ def question(request):
 
 @login_required
 def threats(request):
+    currentUser = request.user
     assetID = request.POST["selectedElement"]
     assetName = get_object_or_404(dbAsset, id=assetID)
     threats = get_list_or_404(assetThreat, assetKey=assetName)
@@ -64,10 +65,11 @@ def threats(request):
 
         'selectedAsset': assetName,
         'threats': threats,
+        'user': currentUser,
     }
     return render(request, 'common-threats.html', context)
 
-
+@login_required
 def answer(request, question_id):
     questionText = Question.objects.get(id=question_id).questionText
     currentUser = request.user
@@ -79,7 +81,6 @@ def answer(request, question_id):
         "question": questionText,
         "answers": Answer.objects.all().filter(question=question_id).order_by('-answerRank'),
         "user": currentUser,
-        "isSuperUser": currentUser.is_superuser,
         "answerForm": answerForm,
     }
     return render(request, 'answer.html', context)

@@ -12,14 +12,10 @@
     <br>
     {% endfor %}
 <br>
-
-{% if isSuperUser %}
 Welcome {{ user }}, want to submit a new answer? <br>
 <form id="answerInput" method="post" action="{% url 'submitAnswer' questionId %}">
     {% csrf_token %}
     {{ answerForm }}
 </form>
 <button type="submit" form="answerInput">Submit New Answer</button>
-{% endif %}
-
 {% endblock%}
