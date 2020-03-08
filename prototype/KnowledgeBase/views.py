@@ -5,6 +5,7 @@ from django.views import generic
 # rom .forms import assetDropdown
 from .forms import *
 from .models import Asset as dbAsset, Question, Answer
+from .models import Answer as dbAnswer
 from .models import Threat as assetThreat
 from .models import Question as dbQuestion
 from django.shortcuts import get_object_or_404  # used for rapid development, can change later -joey
@@ -74,6 +75,7 @@ def answer(request, question_id):
         "question": questionText,
         "answers": Answer.objects.all().filter(question=question_id).order_by('-answerRank'),
     }
+    request.session['QID'] = question_id
     return render(request, 'answer.html', context)
 
 @login_required
@@ -106,6 +108,18 @@ def addNewThreat(request, theAssetName):
     threatEntry.assetKey = get_object_or_404(dbAsset, assetName=theAssetName)
     threatEntry.save()
     return HttpResponseRedirect("/")
+
+def updateScore(request, answer_id, scoreChange):
+    question_id = request.session["QID"]
+    questionText = Question.objects.get(id=question_id).questionText
+    context = {
+        "question": questionText,
+        "answers": Answer.objects.all().filter(question=question_id).order_by('-answerRank'),
+    }
+    answerObj = get_object_or_404(dbAnswer, id=answer_id)
+    answerObj.answerRank += scoreChange
+    answerObj.save()
+    return render(request, 'answer.html', context)
 
 class ThreatDetailView(generic.DetailView):
     model = assetThreat
