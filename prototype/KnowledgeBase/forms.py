@@ -9,11 +9,10 @@ class assetDropdown(forms.Form):
     )
 
 class questionInputTextField(forms.Form):
-    question = forms.CharField(label="Enter Question Here:", max_length=100)
+    question = forms.CharField(label="Enter Question Here:", max_length=100, widget=forms.TextInput(attrs={'style' : 'background-color: palegoldenrod; border: none;', 'placeholder' : 'Type here'}))
 
-class threatInputTextFiled(forms.Form):
-    threat = forms.CharField(label="Threat Name:", max_length=100)
+class threatInputTextField(forms.Form):
+    threat = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'style' : 'background-color: palegoldenrod; border: none', 'placeholder' : 'Type threat name here'}))
 
-
-
-
+class answerInputTextField(forms.Form):
+    answer = forms.CharField(label="", widget=forms.Textarea(attrs={'style' : 'background-color: mistyrose; border: none', 'placeholder' : 'Have another answer? Type it here!'}))
