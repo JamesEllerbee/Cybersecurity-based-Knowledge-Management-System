@@ -14,4 +14,5 @@ urlpatterns = [
     path('answer/', views.answer, name='answer'),
     #path('threats/', views.ThreatListView.as_view(), name='threats'),
     path('threat/<int:pk>', views.ThreatDetailView.as_view(), name='threat-detail'),
+    path('results/vote/answer/<int:answer_id>/<str:scoreChange>', views.updateScore, name ='updateScore'),
 ]

@@ -7,7 +7,8 @@
 
     {% for element in answers%}
     <div style="align-self:flex-start; border-style: dashed; border-color:mistyrose; border-width: 2px; padding: 2px;">
-        {{ element}} {{ element.answerRank }}<br>
+        {{ element }} {{ element.answerRank }} <a class="btn btn-warning" style="background-color:springgreen; border-color: springgreen" href="{% url 'updateScore' element.id 1%} ">Up</a><br>
+        <a class="btn btn-warning" style="background-color:red; border-color: red" href="{% url 'updateScore' element.id -1%} ">Down</a><br> 
     </div>
     <br>
     {% endfor %}

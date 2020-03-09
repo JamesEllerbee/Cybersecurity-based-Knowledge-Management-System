@@ -5,6 +5,7 @@ from django.views import generic
 # rom .forms import assetDropdown
 from .forms import *
 from .models import Asset as dbAsset, Question, Answer
+from .models import Answer as dbAnswer
 from .models import Threat as assetThreat
 from .models import Question as dbQuestion
 from .models import Answer as dbAnswer
@@ -83,6 +84,7 @@ def answer(request, question_id):
         "user": currentUser,
         "answerForm": answerForm,
     }
+    request.session['QID'] = question_id
     return render(request, 'answer.html', context)
 
 @login_required
@@ -114,6 +116,19 @@ def addNewThreat(request, theAssetName):
     threatEntry.save()
     return HttpResponseRedirect("/")
 
+@login_required
+def updateScore(request, answer_id, scoreChange):
+    question_id = request.session["QID"]
+    questionText = Question.objects.get(id=question_id).questionText
+    context = {
+        "question": questionText,
+        "answers": Answer.objects.all().filter(question=question_id).order_by('-answerRank'),
+    }
+    answerObj = get_object_or_404(dbAnswer, id=answer_id)
+    answerObj.answerRank += int(scoreChange)
+    answerObj.save()
+    return render(request, 'answer.html', context)
+    
 def addNewAnswer(request, question_id):
     if request == "GET":
         return render(request, 'error.html', {'errorMessage': 'Unexpected request for this page'})
