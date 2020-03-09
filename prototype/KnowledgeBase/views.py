@@ -109,6 +109,7 @@ def addNewThreat(request, theAssetName):
     threatEntry.save()
     return HttpResponseRedirect("/")
 
+@login_required
 def updateScore(request, answer_id, scoreChange):
     question_id = request.session["QID"]
     questionText = Question.objects.get(id=question_id).questionText
@@ -117,7 +118,7 @@ def updateScore(request, answer_id, scoreChange):
         "answers": Answer.objects.all().filter(question=question_id).order_by('-answerRank'),
     }
     answerObj = get_object_or_404(dbAnswer, id=answer_id)
-    answerObj.answerRank += scoreChange
+    answerObj.answerRank += int(scoreChange)
     answerObj.save()
     return render(request, 'answer.html', context)
 
