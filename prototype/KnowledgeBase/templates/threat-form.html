@@ -2,9 +2,9 @@
 {% block content %}
 <h1>Submit new threat</h1>
 Submitting for asset: {{ selectedAsset }}
-<form id="threatInput" method="post" action="{% url 'threatSubmitResult' selectedAsset %}">
+<div style="background-color:palegoldenrod; border-color:palegoldenrod; border-width:10px; border-radius:4px; padding:2px"><form id="threatInput" method="post" action="{% url 'threatSubmitResult' selectedAsset %}">
     {% csrf_token %}
     {{ threatInputTextField }}
-</form>
-<button type="submit" form="threatInput">Submit</button>
+</form></div>
+<button class="btn btn-warning" style="background-color:springgreen; border-color: springgreen;" type="submit" form="threatInput">Submit</button>
 {% endblock %}

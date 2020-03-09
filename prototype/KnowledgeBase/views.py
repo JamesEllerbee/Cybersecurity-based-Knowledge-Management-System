@@ -23,7 +23,7 @@ def index(request):
     }
     return render(request, 'index.html', dropdown)
 
-
+@login_required
 def results(request):
     if request.method == "POST":
         question = request.POST["question"]
@@ -123,12 +123,14 @@ def updateScore(request, answer_id, scoreChange):
     context = {
         "question": questionText,
         "answers": Answer.objects.all().filter(question=question_id).order_by('-answerRank'),
+        "questionId": question_id,
     }
     answerObj = get_object_or_404(dbAnswer, id=answer_id)
     answerObj.answerRank += int(scoreChange)
     answerObj.save()
     return render(request, 'answer.html', context)
-    
+
+@login_required
 def addNewAnswer(request, question_id):
     if request == "GET":
         return render(request, 'error.html', {'errorMessage': 'Unexpected request for this page'})
