@@ -11,9 +11,8 @@ class assetDropdown(forms.Form):
 class questionInputTextField(forms.Form):
     question = forms.CharField(label="Enter Question Here:", max_length=100)
 
-class threatInputTextFiled(forms.Form):
+class threatInputTextField(forms.Form):
     threat = forms.CharField(label="Threat Name:", max_length=100)
 
-
-
-
+class answerInputTextField(forms.Form):
+    answer = forms.CharField(widget=forms.Textarea)

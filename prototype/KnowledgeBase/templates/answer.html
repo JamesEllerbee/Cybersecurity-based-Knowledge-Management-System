@@ -10,6 +10,13 @@
         {{ element }} {{ element.answerRank }} <a class="btn btn-warning" style="background-color:springgreen; border-color: springgreen" href="{% url 'updateScore' element.id 1%} ">Up</a><br>
         <a class="btn btn-warning" style="background-color:red; border-color: red" href="{% url 'updateScore' element.id -1%} ">Down</a><br> 
     </div>
+    <br>
     {% endfor %}
 <br>
+Welcome {{ user }}, want to submit a new answer? <br>
+<form id="answerInput" method="post" action="{% url 'submitAnswer' questionId %}">
+    {% csrf_token %}
+    {{ answerForm }}
+</form>
+<button type="submit" form="answerInput">Submit New Answer</button>
 {% endblock%}
