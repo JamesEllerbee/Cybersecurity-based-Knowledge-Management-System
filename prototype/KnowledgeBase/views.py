@@ -15,6 +15,8 @@ from django.shortcuts import get_list_or_404  # used for pulling multiple object
 
 @login_required
 def index(request):
+    user = request.user
+    print(user.id)
     numAssets = dbAsset.objects.all()
     Asset = assetDropdown()
     dropdown = {
@@ -74,9 +76,7 @@ def threats(request):
 def answer(request, question_id):
     questionText = Question.objects.get(id=question_id).questionText
     currentUser = request.user
-    answerForm = None
-    if currentUser.is_superuser: #todo, change this to however we're going to keep up with whether a user can post or not - jo
-        answerForm = answerInputTextField()
+    answerForm = answerInputTextField()
     context = {
         "questionId": question_id,
         "question": questionText,
@@ -120,10 +120,12 @@ def addNewThreat(request, theAssetName):
 def updateScore(request, answer_id, scoreChange):
     question_id = request.session["QID"]
     questionText = Question.objects.get(id=question_id).questionText
+    answerForm = answerInputTextField()
     context = {
         "question": questionText,
         "answers": Answer.objects.all().filter(question=question_id).order_by('-answerRank'),
         "questionId": question_id,
+        "answerForm": answerForm,
     }
     answerObj = get_object_or_404(dbAnswer, id=answer_id)
     answerObj.answerRank += int(scoreChange)
