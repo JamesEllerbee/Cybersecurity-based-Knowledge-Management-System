@@ -8,17 +8,6 @@ from datetime import datetime
 
 '''
 TABLE NAME: 
-    somthing
-        somthing
-COLUMNS
-    something
-        for this
-    something
-        for this
-'''
-
-'''
-TABLE NAME: 
     Asset
         holds what assets are in the system
 COLUMNS
@@ -130,7 +119,7 @@ COLUMNS
         is the answer itself
 '''
 class Answer(models.Model):
-     #TODO: change this to question key and any parts in the code base to match
+     #TODO: change this to question key and any parts in the code base to match, will also have to change name in admin.py too
     question = models.ForeignKey('Question', on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True, auto_now=False)
     answerRank = models.IntegerField(primary_key=False, default=0)
@@ -144,6 +133,16 @@ class Answer(models.Model):
         return self.answerText
 
 
+'''
+TABLE NAME: 
+    somthing
+        somthing
+COLUMNS
+    something
+        for this
+    something
+        for this
+'''
 class Vulnerability(models.Model):
     assetKey =  models.ForeignKey('Asset', on_delete=models.CASCADE)
     threatKey = models.ForeignKey('Threat', on_delete=models.CASCADE)
@@ -161,6 +160,16 @@ class Vulnerability(models.Model):
         return self.vulterabilityText
 
 
+'''
+TABLE NAME: 
+    somthing
+        somthing
+COLUMNS
+    something
+        for this
+    something
+        for this
+'''
 class SeverityLevel(models.Model):
     vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.CASCADE)
     level = models.CharField(max_length=200)
@@ -173,6 +182,16 @@ class SeverityLevel(models.Model):
         return self.level
 
 
+'''
+TABLE NAME: 
+    somthing
+        somthing
+COLUMNS
+    something
+        for this
+    something
+        for this
+'''
 class Countermeasure(models.Model):
     vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.CASCADE)
     employedDate = models.DateField(auto_now_add=True, auto_now=False)
@@ -186,6 +205,16 @@ class Countermeasure(models.Model):
         return self.CountermeasureText
 
 
+'''
+TABLE NAME: 
+    somthing
+        somthing
+COLUMNS
+    something
+        for this
+    something
+        for this
+'''
 class Attacker(models.Model):
     vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.CASCADE)
     attackerType = models.CharField(max_length=200)
@@ -198,6 +227,16 @@ class Attacker(models.Model):
         return self.attackerType
 
 
+'''
+TABLE NAME: 
+    somthing
+        somthing
+COLUMNS
+    something
+        for this
+    something
+        for this
+'''
 class CiaaCategory(models.Model):
     vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.CASCADE)
     categoryType = models.CharField(max_length=200)

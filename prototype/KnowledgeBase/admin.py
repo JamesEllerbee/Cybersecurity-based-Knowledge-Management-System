@@ -28,7 +28,6 @@ class answerAdmin(admin.ModelAdmin):
 
 
 class vulnerabilityAdmin(admin.ModelAdmin):
-    #TODO:add in the other fields
     list_display = ("assetKey", "threatKey", "attackerKey", "countermeasureKey", "ciaaKey", "severityLevelKey", "vulterabilityText")
 
 
