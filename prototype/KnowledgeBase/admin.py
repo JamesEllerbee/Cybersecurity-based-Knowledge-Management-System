@@ -1,11 +1,14 @@
 from django.contrib import admin
 
-# Register your models here.
+# import your classes you created in the models.py file. 
+# Should be a list of your tables
 from .models import Asset, Question, Advice, Threat, Answer, Vulnerability, SeverityLevel, \
                     Countermeasure, Attacker, CiaaCategory
 
                     
-
+'''
+The following are classes that will allow the admin module to display the fields in the tables
+'''
 
 class assetAdmin(admin.ModelAdmin):
     list_display = ("assetName",)
@@ -47,6 +50,10 @@ class ciaacategoryAdmin(admin.ModelAdmin):
     list_display = ("vulnerabilityKey", "categoryType")
 
 
+'''
+the following are tying together the classes in this class with class we are importing
+aka tying our display list we create here to our tables we created in models.py
+'''
 
 admin.site.register(Asset, assetAdmin)
 admin.site.register(Question, questionAdmin)
