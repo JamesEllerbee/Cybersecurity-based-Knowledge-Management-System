@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 
 # Create your models here.
@@ -46,7 +47,8 @@ COLUMNS
         holds text that is the advice itself
 '''
 class Advice(models.Model):
-    threatID = models.ForeignKey(Threat, on_delete=models.PROTECT, null=True)
+    #FIXME: this might need to be thread id? check dev branch
+    threatKey = models.ForeignKey('Threat', on_delete=models.PROTECT, null=True)
     adviceText = models.CharField(max_length=200)
 
     class meta:
@@ -56,10 +58,26 @@ class Advice(models.Model):
     def __str__(self):
         return self.adviceText
 
+
+'''
+TABLE NAME: 
+    Threat
+        Holds threats that are used in the system
+COLUMNS
+    vulnerabilityKey
+        is the forgin key to the vulernability table
+    assetKey
+        is the forgin key to a record in the asset table
+    adviceKey
+        is the forgin key to a record in the advice table
+    threatName
+        is the name of this threat
+'''
 class Threat(models.Model):
+    #vulnerabilityKey = ('Vulnerability', on_delete=models.PROTECT, null=True)
+    assetKey = models.ForeignKey('Asset', on_delete=models.CASCADE)
+    adviceKey = models.ForeignKey('Advice', on_delete=models.PROTECT, null=True)
     threatName = models.CharField(max_length=100)
-    assetKey = models.ForeignKey(Asset, on_delete=models.CASCADE)
-    adviceKey = models.ForeignKey(Advice, on_delete=models.PROTECT, null=True)
 
     class meta:
         managed = False
@@ -68,9 +86,13 @@ class Threat(models.Model):
     def __str__(self):
         return self.threatName
 
+
 class Question(models.Model):
+    assetKey = models.ForeignKey('Asset', on_delete=models.CASCADE)
+    #FIXME:figure this out
+    date = models.DateField(auto_now_add=True)
+    rank = models.IntegerField(default=0)
     questionText = models.CharField(max_length=200)
-    assetKey = models.ForeignKey(Asset, on_delete=models.CASCADE)
 
     class meta:
         managed = False
