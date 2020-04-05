@@ -47,7 +47,6 @@ COLUMNS
         holds text that is the advice itself
 '''
 class Advice(models.Model):
-    #FIXME: this might need to be thread id? check dev branch
     threatKey = models.ForeignKey('Threat', on_delete=models.PROTECT, null=True)
     adviceText = models.CharField(max_length=200)
 
@@ -87,11 +86,25 @@ class Threat(models.Model):
         return self.threatName
 
 
+
+'''
+TABLE NAME: 
+    Question
+        holds What questions have been posted in the system
+COLUMNS
+    assetKey
+        is the forgin key to the assetKey this quesitons is tied too
+    date
+        the date this question was created
+    questionRank
+        the rank of the question
+    questionText
+        is the question itself
+'''
 class Question(models.Model):
     assetKey = models.ForeignKey('Asset', on_delete=models.CASCADE)
-    #FIXME:figure this out
-    date = models.DateField(auto_now_add=True)
-    rank = models.IntegerField(default=0)
+    date = models.DateField(auto_now_add=True, auto_now=False)
+    questionRank = models.IntegerField(default=0)
     questionText = models.CharField(max_length=200)
 
     class meta:
@@ -101,11 +114,28 @@ class Question(models.Model):
     def __str__(self):
         return self.questionText
 
-class Answer(models.Model):
-    answerText = models.CharField(max_length=200)
-    answerRank = models.IntegerField(primary_key=False, default=0)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
+'''
+TABLE NAME: 
+    Answer
+        holds What Answers have been posted in the system
+COLUMNS
+    question
+        is the forgin key to the question this answer is tied too
+    date
+        the date this answer was created
+    answerRank
+        the rank of the answer
+    answerText
+        is the answer itself
+'''
+class Answer(models.Model):
+     #TODO: change this to question key and any parts in the code base to match
+    question = models.ForeignKey('Question', on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True, auto_now=False)
+    answerRank = models.IntegerField(primary_key=False, default=0)
+    answerText = models.CharField(max_length=200)
+  
     class meta:
         managed = False
         db_table = 'answer'

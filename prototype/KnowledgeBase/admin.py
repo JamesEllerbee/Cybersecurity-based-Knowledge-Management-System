@@ -8,20 +8,22 @@ class assetAdmin(admin.ModelAdmin):
     list_display = ("assetName",)
 
 
+class adviceAdmin(admin.ModelAdmin):
+    list_display = ("adviceText", "threatKey")
+
+
 class questionAdmin(admin.ModelAdmin):
-    list_display = ("assetKey", "questionText",)
+    list_display = ("assetKey", "date", "questionRank", "questionText",)
 
 
 class threatAdmin(admin.ModelAdmin):
+    #add in vulnerabilityKey
     list_display = ("assetKey", "threatName", "adviceKey")
 
 
 class answerAdmin(admin.ModelAdmin):
-    list_display = ("question", "answerText","answerRank")
+    list_display = ("question", "date", "answerText", "answerRank")
 
-
-class adviceAdmin(admin.ModelAdmin):
-    list_display = ("adviceText",)
 
 
 admin.site.register(Asset, assetAdmin)
