@@ -73,7 +73,7 @@ COLUMNS
         is the name of this threat
 '''
 class Threat(models.Model):
-    #vulnerabilityKey = ('Vulnerability', on_delete=models.PROTECT, null=True)
+    vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.PROTECT, null=True)
     assetKey = models.ForeignKey('Asset', on_delete=models.CASCADE)
     adviceKey = models.ForeignKey('Advice', on_delete=models.PROTECT, null=True)
     threatName = models.CharField(max_length=100)
@@ -142,3 +142,69 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.answerText
+
+
+class Vulnerability(models.Model):
+    assetKey =  models.ForeignKey('Asset', on_delete=models.CASCADE)
+    threatKey = models.ForeignKey('Threat', on_delete=models.CASCADE)
+    attackerKey = models.ForeignKey('Attacker', on_delete=models.PROTECT, null=True)
+    countermeasureKey =models.ForeignKey('Countermeasure', on_delete=models.PROTECT, null=True)
+    ciaaKey = models.ForeignKey('CiaaCategory', on_delete=models.PROTECT, null=True)
+    severityLevelKey = models.ForeignKey('SeverityLevel', on_delete=models.PROTECT, null=True)
+    vulterabilityText = models.CharField(max_length=200)
+
+    class meta:
+        managed = False
+        db_table = 'vulnerability'
+
+    def __str__(self):
+        return self.vulterabilityText
+
+
+class SeverityLevel(models.Model):
+    vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.CASCADE)
+    level = models.CharField(max_length=200)
+
+    class meta:
+        managed = False
+        db_table = 'severitylevel'
+
+    def __str__(self):
+        return self.level
+
+
+class Countermeasure(models.Model):
+    vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.CASCADE)
+    employedDate = models.DateField(auto_now_add=True, auto_now=False)
+    CountermeasureText = models.CharField(max_length=200)
+
+    class meta:
+        managed = False
+        db_table = 'countermeasure'
+
+    def __str__(self):
+        return self.CountermeasureText
+
+
+class Attacker(models.Model):
+    vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.CASCADE)
+    attackerType = models.CharField(max_length=200)
+
+    class meta:
+        managed = False
+        db_table = 'attacker'
+
+    def __str__(self):
+        return self.attackerType
+
+
+class CiaaCategory(models.Model):
+    vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.CASCADE)
+    categoryType = models.CharField(max_length=200)
+
+    class meta:
+        managed = False
+        db_table = 'ciaacategory'
+
+    def __str__(self):
+        return self.categoryType
