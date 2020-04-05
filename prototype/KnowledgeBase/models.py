@@ -135,13 +135,23 @@ class Answer(models.Model):
 
 '''
 TABLE NAME: 
-    somthing
-        somthing
+    Vulnerability
+        holds information about vulnerabilitys on the system
 COLUMNS
-    something
-        for this
-    something
-        for this
+    assetKey
+        is the forgin key to the asset this vulnerability is tied too
+    threatKey
+        is the forgin key to the threat this vulnerability is tied too
+    attackerKey
+        is the forgin key to the attacker this vulnerability is tied too
+    countermeasureKey
+        is the forgin key to the counter measure this vulnerability is tied too
+    ciaaKey
+        is the forgin key to the CIAA this vulnerability is tied too
+    severityLevelKey
+        is the forgin key to the severity level this vulnerability is tied too
+    vulterabilityText
+        text explaining what the vulterability is
 '''
 class Vulnerability(models.Model):
     assetKey =  models.ForeignKey('Asset', on_delete=models.CASCADE)
@@ -162,13 +172,13 @@ class Vulnerability(models.Model):
 
 '''
 TABLE NAME: 
-    somthing
-        somthing
+    Severity Level
+        holds the different types of severity levels on the system
 COLUMNS
-    something
-        for this
-    something
-        for this
+    vulnerabilityKey
+        is the forgin key to the vulnerability this severity level is tied too
+    level
+        shows what level this severity is
 '''
 class SeverityLevel(models.Model):
     vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.CASCADE)
@@ -184,13 +194,15 @@ class SeverityLevel(models.Model):
 
 '''
 TABLE NAME: 
-    somthing
-        somthing
+    Counter Measure
+        holds what countermeasure are on the system 
 COLUMNS
-    something
-        for this
-    something
-        for this
+    vulnerabilityKey
+        is the forgin key to the vulnerability this counter measure is tied too
+    employedDate
+        is the data this counter measure was created
+    CountermeasureText
+        is the text explaning the counter measure itself
 '''
 class Countermeasure(models.Model):
     vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.CASCADE)
@@ -207,13 +219,13 @@ class Countermeasure(models.Model):
 
 '''
 TABLE NAME: 
-    somthing
-        somthing
+    Attacker
+        holds the different types of attackers that are on the system
 COLUMNS
-    something
-        for this
-    something
-        for this
+    vulnerabilityKey
+         is the forgin key to the vulnerability this Attacker is tied too
+    attackerType
+        text stating what type of attacker this attacker is
 '''
 class Attacker(models.Model):
     vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.CASCADE)
@@ -229,13 +241,13 @@ class Attacker(models.Model):
 
 '''
 TABLE NAME: 
-    somthing
-        somthing
+    Ciaa Category
+        The different types of CIAA categorys are on the system
 COLUMNS
-    something
-        for this
-    something
-        for this
+    vulnerabilityKey
+        is the forgin key to the vulnerability this Ciaa Category is tied too
+    categoryType
+        text stating what category this CIAA falls into
 '''
 class CiaaCategory(models.Model):
     vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.CASCADE)
