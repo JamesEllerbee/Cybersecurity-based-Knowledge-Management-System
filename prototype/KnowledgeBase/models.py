@@ -4,6 +4,26 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
+'''
+TABLE NAME: 
+    somthing
+        somthing
+COLUMNS
+    something
+        for this
+    something
+        for this
+'''
+
+'''
+TABLE NAME: 
+    Asset
+        holds what assets are in the system
+COLUMNS
+    assetName
+        holds the name of the Asset
+'''
 class Asset(models.Model):
     assetName = models.CharField(max_length=30)
 
@@ -15,7 +35,18 @@ class Asset(models.Model):
         return self.assetName
 
 
+'''
+TABLE NAME: 
+    Advice
+        holds advice that can be tied to threats in the system
+COLUMNS
+    threatID
+        holds the ID of the threat record this advice is tied too
+    adviceText
+        holds text that is the advice itself
+'''
 class Advice(models.Model):
+    threatID = models.ForeignKey(Threat, on_delete=models.PROTECT, null=True)
     adviceText = models.CharField(max_length=200)
 
     class meta:
