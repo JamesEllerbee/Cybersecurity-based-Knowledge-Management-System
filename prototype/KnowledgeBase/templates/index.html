@@ -4,30 +4,23 @@
 <!--Index buttons-->
 <h1 style="font-family: candara;">Welcome to your company's knowledge base</h1>
 <body>
+    <br>
     <div class="row center">
         <form id="assetDropdown" action="{% url 'question'%}" method="post">
             {% csrf_token %}
             {{ assetDropdown }}
-            <select name=selectedElement>
+            <select style="background-color:palegoldenrod; padding: 2px; border-color:darkgray; border-style:dashed; border-width: 2px; border-radius: 3px;" name=selectedElement>
                 {% for item in numAsset %}
                     <option value="{{ item.id}}">{{ item.assetName }}</option>
                 {% endfor %}
-                </select>
+            </select>
         </form>
-    </div>
+    </div><br>
     <div class="row center">
-        <button type="submit" form="assetDropdown">Ask Question</button>
-    </div>
+        <button style="background-color:palegoldenrod; border-color:palegoldenrod;" class="btn btn-warning" type="submit" form="assetDropdown">Ask Question</button>
+    </div><br>
     <div class="row center">
-        <button type="submit" formaction="{% url 'threats' %}" form="assetDropdown">See common threats</button>
-    </div>
-<!--
-<div id="div" class="row center">
-    <a href="question/" class="button">Ask a question</a>
-</div>
-<div class="row center">
-    <a href="threats/" class="button">See common threats</a>
-</div>
--->
+        <button style="background-color:palegoldenrod; border-color:palegoldenrod;" class="btn btn-warning" type="submit" formaction="{% url 'threats' %}" form="assetDropdown">See common threats</button>
+    </div><br><br>
 </body>
 {% endblock %}

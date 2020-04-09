@@ -9,19 +9,17 @@
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-<body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-2">
-      {% block sidebar %}
-        <div class="sidebar-nav" style="border-style:solid; border-color: dodgerblue; border-radius:10px; border-width:2px; border-right-width:0px; border-top-right-radius:0px; border-bottom-right-radius:0px">
-          <a href="{% url 'index' %}">Home</a></li><br>
-          <a href="{% url 'logout' %}">Logout</a></li>
-        </div>
-     {% endblock %}
-      </div>
-      <div class="col-sm-10 ">{% block content %}{% endblock %}</div>
+<body style="background-color: linen;">
+  <div style="padding-right: 45px; padding-left: 45px; padding-top: 5px;">
+    <div style="display: flex; flex-direction: row; justify-content: space-evenly; border-style:solid; border-color:lightcoral; border-radius:10px; border-width:2px; border-top-width:0px; border-top-left-radius:0px; border-top-right-radius:0px;">
+       
+       {% block sidebar %}
+         <a style="color:lightcoral" href="{% url 'index' %}">Home</a></li>
+         <a style="color:lightcoral" href="{% url 'logout' %}">Logout</a></li>
+      {% endblock %}
+      
     </div>
-  </div>
+</div>
+  <div class="jumbotron" style="display: flex; justify-content: center; flex-direction: column; align-items: center; height: 100%; background-color:thistle ; margin: 20px; margin-top:10px; font-family: 'Courier New', Courier, monospace; padding: 30px;" >{% block content %}{% endblock %}</div>
 </body>
 </html>

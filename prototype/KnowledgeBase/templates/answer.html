@@ -1,9 +1,22 @@
 {% extends "base_generic.html" %}
 {% block content %}
+<div style="border-style: dashed; border-color: floralwhite; border-width: 2px; padding: 2px;">
     Question: {{ question }}
+</div>
 <br>
     {% for element in answers%}
-        {{ element}} {{ element.answerRank }}<br>
+    <div style="align-self:flex-start; border-style: dashed; border-color:mistyrose; border-width: 2px; padding: 2px;">
+        <a class="btn btn-warning" style="background-color:lightgreen; border-color: lightgreen; border-width: 3px; border-radius: 6px" href="{% url 'updateScore' answer_id=element.id scoreChange=1%}">Up</a>
+        <a class="btn btn-warning" style="background-color:tomato;  border-color: tomato; border-width: 3px; border-radius: 6px" href="{% url 'updateScore' element.id -1%}">Down</a> {{ element }} {{ element.answerRank }}
+    </div>
+    <br>
     {% endfor %}
 <br>
+<div style="background-color:mistyrose; border-color:mistyrose; border-width:6px; border-radius:10px; padding:7px; border-style:dotted">
+    Welcome {{ user }}, want to submit a new answer? <br><br>
+<form id="answerInput" method="post" action="{% url 'submitAnswer' question_id=questionId %}">
+    {% csrf_token %}
+    <div style="background-color: mistyrose;"> {{ answerForm }}</div>
+</form></div><br>
+<button class="btn btn-warning" style="background-color:springgreen; border-color: springgreen;" type="submit" form="answerInput">Submit New Answer</button>
 {% endblock%}

@@ -1,10 +1,10 @@
 <!-- This is a document used to fill in parts that aren't developed yet -->
 {% extends "base_generic.html" %}
 {% block content %}
-    Question: {{ output }}
+    Question: {{ output }} <br>
 <br>
     {% for elements in questions%}
-        <a href="{{ elements.id }}/answer">{{ elements }}</a><br>
+        <a style="background-color:palegoldenrod; border-color:palegoldenrod;" class="btn btn-warning" href="{{ elements.id }}/answer">{{ elements }}</a><br>
     {% endfor %}
 <br>
     Don't see your question?<br>
