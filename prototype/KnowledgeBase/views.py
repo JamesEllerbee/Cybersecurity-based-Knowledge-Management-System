@@ -13,8 +13,7 @@ from .models import Question as dbQuestion
 from .models import Answer as dbAnswer
 from django.shortcuts import get_object_or_404  # used for rapid development, can change later -joey
 from django.shortcuts import get_list_or_404  # used for pulling multiple objects from the db - joey
-
-
+import django.contrib.postgres.search
 @login_required
 def index(request):
     user = request.user
@@ -36,7 +35,7 @@ def results(request):
         context = {
             'function': 'Search Results functionality',
             'output': question,
-            'questions': dbQuestion.objects.filter(assetKey=assetID, questionText__contains=question)
+            'questions': dbQuestion.objects.filter(assetKey=assetID, questionText__icontains=question)
 
         }
         return render(request, 'results.html', context)
