@@ -5,7 +5,9 @@
 <strong>Selected asset:</strong> <h3> {{ selectedAsset }} </h3><br>
 <strong>Common Threats:</strong> <br>
 {% for threat in threats %}
+    {% if forloop.counter < 5 %}
     <a class="btn btn-warning" style="background-color:palegoldenrod; border-color:palegoldenrod;" href="{% url 'threat-detail' threat.id %}">{{threat}}</a>
+    {% endif %}
     <br><br>
 {% endfor %}
 <br><br><br><br>Hi {{user}}, know a threat not listed?
