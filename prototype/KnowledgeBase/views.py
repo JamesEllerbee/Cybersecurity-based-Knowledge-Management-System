@@ -1,4 +1,5 @@
 import string
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -64,17 +65,18 @@ def threats(request):
     currentUser = request.user
     assetID = request.POST["selectedElement"]
     assetName = get_object_or_404(dbAsset, id=assetID)
-    try:
-        threats = list(assetThreat.objects.filter(assetKey=assetName, isApproved=True))
-        if not threats:
-            raise Exception
-    except:
+    threats = list(assetThreat.objects.filter(assetKey=assetName, isApproved=True))
+    paginator = Paginator(threats, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    if not threats:
         return render(request, 'no_threats.html')
     context = {
 
         'selectedAsset': assetName,
-        'threats': threats,
+        #'threats': threats,
         'user': currentUser,
+        'page_obj': page_obj
     }
     return render(request, 'common-threats.html', context)
 
