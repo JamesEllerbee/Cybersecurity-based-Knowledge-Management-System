@@ -4,27 +4,12 @@
 <h1>Here are the common threats for the selected asset</h1><br>
 <strong>Selected asset:</strong> <h3> {{ selectedAsset }} </h3><br>
 <strong>Common Threats:</strong> <br>
-{% for threat in page_obj %}
+{% for threat in threats %}
+    {% if forloop.counter < 5 %}
     <a class="btn btn-warning" style="background-color:palegoldenrod; border-color:palegoldenrod;" href="{% url 'threat-detail' threat.id %}">{{threat}}</a>
+    {% endif %}
     <br><br>
 {% endfor %}
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
 <br><br><br><br>Hi {{user}}, know a threat not listed?
 <a class="btn btn-warning" style="background-color:springgreen; border-color: springgreen" href="{% url 'submitThreat' selectedAsset %}">Submit Threat</a>
 <br><br>For more information please call the company's IT department at: 555-867-5309
