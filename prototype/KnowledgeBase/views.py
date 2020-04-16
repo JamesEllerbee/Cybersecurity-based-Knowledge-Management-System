@@ -1,7 +1,9 @@
+import string
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.views import generic
+from django.db import models
 # rom .forms import assetDropdown
 from .forms import *
 from .models import Asset as dbAsset, Question, Answer
@@ -63,7 +65,12 @@ def threats(request):
     currentUser = request.user
     assetID = request.POST["selectedElement"]
     assetName = get_object_or_404(dbAsset, id=assetID)
-    threats = get_list_or_404(assetThreat, assetKey=assetName)
+    try:
+        threats = list(assetThreat.objects.filter(assetKey=assetName))
+        if not threats:
+            raise Exception
+    except:
+        return render(request, 'no_threats.html')
     context = {
 
         'selectedAsset': assetName,
@@ -110,11 +117,19 @@ def submitThreat(request, assetName):
 
 @login_required
 def addNewThreat(request, theAssetName):
-    threatEntry = assetThreat()
-    threatEntry.threatName = request.POST["threat"]
-    threatEntry.assetKey = get_object_or_404(dbAsset, assetName=theAssetName)
-    threatEntry.save()
-    return HttpResponseRedirect("/")
+    if request.POST["threat"][0] != " ":
+        for alpha in list(string.ascii_lowercase):
+            if alpha in request.POST["threat"].lower():
+                if request.POST["threat"] not in assetThreat.objects.all().values_list('threatName', flat=True):
+                    threatEntry = assetThreat()
+                    threatEntry.threatName = request.POST["threat"]
+                    threatEntry.assetKey = get_object_or_404(dbAsset, assetName=theAssetName)
+                    threatEntry.save()
+    return render(request, "threat_added.html")
+
+@login_required
+def thankyou(request):
+    return render(request, 'thread_added.html')
 
 @login_required
 def updateScore(request, answer_id, scoreChange):
