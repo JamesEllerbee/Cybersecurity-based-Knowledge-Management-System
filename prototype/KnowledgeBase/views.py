@@ -65,7 +65,7 @@ def threats(request):
     assetID = request.POST["selectedElement"]
     assetName = get_object_or_404(dbAsset, id=assetID)
     try:
-        threats = list(assetThreat.objects.filter(assetKey=assetName))
+        threats = list(assetThreat.objects.filter(assetKey=assetName, isApproved=True))
         if not threats:
             raise Exception
     except:
