@@ -63,16 +63,17 @@ def question(request):
 @login_required
 def threats(request):
     currentUser = request.user
-    assetID = request.POST["selectedElement"]
-    assetName = get_object_or_404(dbAsset, id=assetID)
-    threats = list(assetThreat.objects.filter(assetKey=assetName, isApproved=True))
-    paginator = Paginator(threats, 5)
+    if not request.session['AID']:
+        assetID = request.POST["selectedElement"]
+        request.session['AID'] = assetID
+    assetName = get_object_or_404(dbAsset, id=request.session['AID'])
+    #threats = assetThreat.objects.filter(assetKey=assetName, isApproved=True)
+    paginator = Paginator(assetThreat.objects.filter(assetKey=request.session['AID'], isApproved=True), 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     if not threats:
         return render(request, 'no_threats.html')
     context = {
-
         'selectedAsset': assetName,
         #'threats': threats,
         'user': currentUser,
