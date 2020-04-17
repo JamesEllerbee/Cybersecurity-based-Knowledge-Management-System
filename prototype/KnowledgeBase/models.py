@@ -62,10 +62,11 @@ COLUMNS
         is the name of this threat
 '''
 class Threat(models.Model):
-    vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.PROTECT, null=True)
+    vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.PROTECT, null=True, blank=True)
     assetKey = models.ForeignKey('Asset', on_delete=models.CASCADE)
-    adviceKey = models.ForeignKey('Advice', on_delete=models.PROTECT, null=True)
+    adviceKey = models.ForeignKey('Advice', on_delete=models.PROTECT, null=True, blank=True)
     threatName = models.CharField(max_length=100)
+    isApproved = models.BooleanField(default=False)
 
     class meta:
         managed = False
