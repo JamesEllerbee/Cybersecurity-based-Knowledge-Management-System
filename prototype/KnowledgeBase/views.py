@@ -64,10 +64,8 @@ def question(request):
 def threats(request):
     currentUser = request.user
     if not request.session['AID']:
-        assetID = request.POST["selectedElement"]
-        request.session['AID'] = assetID
+        request.session['AID'] = request.POST["selectedElement"]
     assetName = get_object_or_404(dbAsset, id=request.session['AID'])
-    #threats = assetThreat.objects.filter(assetKey=assetName, isApproved=True)
     paginator = Paginator(assetThreat.objects.filter(assetKey=request.session['AID'], isApproved=True), 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -75,7 +73,6 @@ def threats(request):
         return render(request, 'no_threats.html')
     context = {
         'selectedAsset': assetName,
-        #'threats': threats,
         'user': currentUser,
         'page_obj': page_obj
     }
