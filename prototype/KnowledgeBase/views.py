@@ -69,7 +69,7 @@ def question(request):
 def threats(request):
     currentUser = request.user
     print(request.POST.get("selectedElement"))
-    if request.method == "POST" and request.session['AID'] != request.POST["selectedElement"]:
+    if 'AID' not in request.session or request.method == "POST" and  request.session['AID'] != request.POST["selectedElement"]:
         request.session['AID'] = request.POST["selectedElement"]
     assetName = get_object_or_404(dbAsset, id=request.session['AID'])
     paginator = Paginator(assetThreat.objects.filter(assetKey=request.session['AID'], isApproved=True), 5)
