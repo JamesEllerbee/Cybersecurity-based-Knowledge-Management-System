@@ -22,7 +22,6 @@ import django.contrib.postgres.search
 @login_required
 def index(request):
     user = request.user
-    print(user.id)
     numAssets = dbAsset.objects.all()
     Asset = assetDropdown()
     dropdown = {
@@ -68,7 +67,6 @@ def question(request):
 @login_required
 def threats(request):
     currentUser = request.user
-    print(request.POST.get("selectedElement"))
     if 'AID' not in request.session or request.method == "POST" and  request.session['AID'] != request.POST["selectedElement"]:
         request.session['AID'] = request.POST["selectedElement"]
     assetName = get_object_or_404(dbAsset, id=request.session['AID'])
