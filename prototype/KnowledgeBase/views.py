@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.db import models
 # rom .forms import assetDropdown
+from pycurl import POST
+
 from .forms import *
 from .models import Asset as dbAsset, Question, Answer
 from .models import Answer as dbAnswer
@@ -15,6 +17,8 @@ from .models import Answer as dbAnswer
 from django.shortcuts import get_object_or_404  # used for rapid development, can change later -joey
 from django.shortcuts import get_list_or_404  # used for pulling multiple objects from the db - joey
 import django.contrib.postgres.search
+
+
 @login_required
 def index(request):
     user = request.user
@@ -26,6 +30,7 @@ def index(request):
         'Assets': Asset,
     }
     return render(request, 'index.html', dropdown)
+
 
 @login_required
 def results(request):
@@ -63,13 +68,14 @@ def question(request):
 @login_required
 def threats(request):
     currentUser = request.user
-    if 'AID' not in request.session or request.POST["selectedElement"] != request.session['AID']:
+    print(request.POST.get("selectedElement"))
+    if request.method == "POST" and request.session['AID'] != request.POST["selectedElement"]:
         request.session['AID'] = request.POST["selectedElement"]
     assetName = get_object_or_404(dbAsset, id=request.session['AID'])
     paginator = Paginator(assetThreat.objects.filter(assetKey=request.session['AID'], isApproved=True), 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    if not threats:
+    if not assetThreat.objects.filter(assetKey=request.session['AID'], isApproved=True):
         return render(request, 'no_threats.html')
     context = {
         'selectedAsset': assetName,
@@ -77,6 +83,7 @@ def threats(request):
         'page_obj': page_obj
     }
     return render(request, 'common-threats.html', context)
+
 
 @login_required
 def answer(request, question_id):
@@ -93,6 +100,7 @@ def answer(request, question_id):
     request.session['QID'] = question_id
     return render(request, 'answer.html', context)
 
+
 @login_required
 def submitQuestion(request):
     if request.method == "GET":
@@ -106,6 +114,7 @@ def submitQuestion(request):
     else:
         return render(request, 'error.html', {'errorMessage': 'Unexpected request for this page'})
 
+
 @login_required
 def submitThreat(request, assetName):
     context = {
@@ -113,6 +122,7 @@ def submitThreat(request, assetName):
         "selectedAsset": assetName,
     }
     return render(request, 'threat-form.html', context)
+
 
 @login_required
 def addNewThreat(request, theAssetName):
@@ -126,9 +136,11 @@ def addNewThreat(request, theAssetName):
                     threatEntry.save()
     return render(request, "threat_added.html")
 
+
 @login_required
 def thankyou(request):
     return render(request, 'thread_added.html')
+
 
 @login_required
 def updateScore(request, answer_id, scoreChange):
@@ -146,6 +158,7 @@ def updateScore(request, answer_id, scoreChange):
     answerObj.save()
     return render(request, 'answer.html', context)
 
+
 @login_required
 def addNewAnswer(request, question_id):
     if request == "GET":
@@ -160,6 +173,7 @@ def addNewAnswer(request, question_id):
         "response": answerText,
     }
     return render(request, 'submission-success.html', context)
+
 
 class ThreatDetailView(generic.DetailView):
     model = assetThreat
