@@ -172,6 +172,8 @@ def addNewAnswer(request, question_id):
     }
     return render(request, 'submission-success.html', context)
 
+def threatDetail(request, threatId):
+    return HttpResponse("yes")
 
 class ThreatDetailView(generic.DetailView):
     model = assetThreat
