@@ -14,6 +14,8 @@ from .models import Answer as dbAnswer
 from .models import Threat as assetThreat
 from .models import Question as dbQuestion
 from .models import Answer as dbAnswer
+from .models import Advice as dbAdvice
+from .models import Vulnerability as dbVulberability
 from django.shortcuts import get_object_or_404  # used for rapid development, can change later -joey
 from django.shortcuts import get_list_or_404  # used for pulling multiple objects from the db - joey
 import django.contrib.postgres.search
@@ -173,7 +175,18 @@ def addNewAnswer(request, question_id):
     return render(request, 'submission-success.html', context)
 
 def threatDetail(request, threatId):
-    return HttpResponse("yes")
+    # used get object or 404 function for fast prototyping, could probably change it to explicitly handle when an object from any table can't be found -Joey
+    threat = get_object_or_404(assetThreat, pk=threatId)
+    asset = threat.assetKey
+    advice = threat.adviceKey
+    vulnerability = threat.vulnerabilityKey
+    attacker = vulnerability.attackerKey
+    countermeasure = vulnerability.countermeasureKey
+    CIAA = vulnerability.ciaaKey
+    severity = vulnerability.severityLevelKey
+
+    return HttpResponse("Threat: %s <br> Asset: %s <br> Advice %s <br> Vulnerability: %s <br> Attacker: %s <br> Counter measure: %s <br> CIAA: %s <br> Severity Level: %s." % (threat, asset, advice, vulnerability, attacker, countermeasure, CIAA, severity))
+
 
 class ThreatDetailView(generic.DetailView):
     model = assetThreat
