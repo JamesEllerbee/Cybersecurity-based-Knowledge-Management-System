@@ -1,9 +1,15 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<strong>Threat:</strong> {{object.threatName}} <br>
-<strong>Asset:</strong> {{object.assetKey}} <br>
-<strong>Advice:</strong> {{object.adviceKey}}
+<strong>Asset:</strong> {{asset}} <br>
+<strong>Threat:</strong> {{threat}} <br>
+<strong>Advice:</strong> {{advice}} <br>
+<strong>Vulnerability:</strong> {{vulnerability}} <br>
+<strong>Attacker:</strong> {{attacker}} <br>
+<strong>Countermeasure:</strong> {{countermeasure}} <br>
+<strong>CIAA:</strong> {{CIAA}} <br>
+<strong>Severity:</strong> {{severity}}
+
 
 {% endblock %}
 

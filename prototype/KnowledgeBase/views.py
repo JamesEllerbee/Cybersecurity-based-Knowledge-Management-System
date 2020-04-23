@@ -177,16 +177,28 @@ def addNewAnswer(request, question_id):
 def threatDetail(request, threatId):
     # used get object or 404 function for fast prototyping, could probably change it to explicitly handle when an object from any table can't be found -Joey
     threat = get_object_or_404(assetThreat, pk=threatId)
-    asset = threat.assetKey
-    advice = threat.adviceKey
-    vulnerability = threat.vulnerabilityKey
-    attacker = vulnerability.attackerKey
-    countermeasure = vulnerability.countermeasureKey
-    CIAA = vulnerability.ciaaKey
-    severity = vulnerability.severityLevelKey
+    asset = threat.assetKey if hasattr(threat, 'assetKey') else  "N/A"
+    advice = threat.adviceKey if hasattr(threat, 'adviceKey') else  "N/A"
+    vulnerability = threat.vulnerabilityKey if hasattr(threat, 'vulnerabilityKey') else  "N/A"
+    attacker = vulnerability.attackerKey if hasattr(threat, 'attackerKey') else  "N/A"
+    countermeasure = vulnerability.countermeasureKey if hasattr(threat, 'countermeasureKey') else  "N/A"
+    CIAA = vulnerability.ciaaKey if hasattr(threat, 'ciaaKey') else  "N/A"
+    severity = vulnerability.severityLevelKey if hasattr(threat, 'severityLevelKey') else  "N/A"
+    context = {
+        "threat": threat,
+        "asset": asset,
+        "advice": advice,
+        "vulnerability": vulnerability,
+        "attacker": attacker,
+        "countermeasure": countermeasure,
+        "CIAA": CIAA,
+        "severity": severity
+    } 
 
-    return HttpResponse("Threat: %s <br> Asset: %s <br> Advice %s <br> Vulnerability: %s <br> Attacker: %s <br> Counter measure: %s <br> CIAA: %s <br> Severity Level: %s." % (threat, asset, advice, vulnerability, attacker, countermeasure, CIAA, severity))
+    return render(request, 'KnowledgeBase/threat_detail.html', context)
+
+    #return HttpResponse("Threat: %s <br> Asset: %s <br> Advice %s <br> Vulnerability: %s <br> Attacker: %s <br> Counter measure: %s <br> CIAA: %s <br> Severity Level: %s." % (threat, asset, advice, vulnerability, attacker, countermeasure, CIAA, severity))
 
 
-class ThreatDetailView(generic.DetailView):
-    model = assetThreat
+#class ThreatDetailView(generic.DetailView):
+#    model = assetThreat
