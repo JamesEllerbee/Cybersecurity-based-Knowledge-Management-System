@@ -180,10 +180,10 @@ def threatDetail(request, threatId):
     asset = threat.assetKey if hasattr(threat, 'assetKey') else  "N/A"
     advice = threat.adviceKey if hasattr(threat, 'adviceKey') else  "N/A"
     vulnerability = threat.vulnerabilityKey if hasattr(threat, 'vulnerabilityKey') else  "N/A"
-    attacker = vulnerability.attackerKey if hasattr(threat, 'attackerKey') else  "N/A"
-    countermeasure = vulnerability.countermeasureKey if hasattr(threat, 'countermeasureKey') else  "N/A"
-    CIAA = vulnerability.ciaaKey if hasattr(threat, 'ciaaKey') else  "N/A"
-    severity = vulnerability.severityLevelKey if hasattr(threat, 'severityLevelKey') else  "N/A"
+    attacker = vulnerability.attackerKey if hasattr(vulnerability, 'attackerKey') else  "N/A"
+    countermeasure = vulnerability.countermeasureKey if hasattr(vulnerability, 'countermeasureKey') else  "N/A"
+    CIAA = vulnerability.ciaaKey if hasattr(vulnerability, 'ciaaKey') else  "N/A"
+    severity = vulnerability.severityLevelKey if hasattr(vulnerability, 'severityLevelKey') else  "N/A"
     context = {
         "threat": threat,
         "asset": asset,
