@@ -2,21 +2,23 @@
 
 ## About / Synopsis
 
-* 
+C-KMS aims to store and retrieve corporate information security knowledge, improve collaboration, locate knowledge sources, mine repositories for hidden knowledge, capture and use knowledge in the workplace. 
+
+The target users of C-KMS would be company employees who use information systems in their day-to-day work. Two fundamental technologies will significantly contribute to the development, implementation, and maintenance of C-KMS: portals and databases. To that end, general users (company employees) should be comfortable to obtain security-relevant knowledge they need at work (i.e., ease of use and usability of C-KMS), while they can engage in the knowledge-creating process via the portal, posting questions, insights, and even solutions related to corporate information security."
+
+Our team will deploy a solution using web technologies in order to be accessible from any device. Our team will strive to develop a system with ease of use along with the necessary structure required to stored data that can answer questions user provide the system along with the ability for data expand ability through content uploaded by users and curated by approved users in the community.
+
+
+* Columbus State University
+* Senior Capstone 
 * Project status: prototype
-* 
 
-See real examples:
-
-* <https://github.com/nuxeo/nuxeo/blob/master/README.md>
-* <https://github.com/nuxeo/nuxeo-drive/blob/master/README.md>
-* <https://github.com/nuxeo/nuxeo-sdk-ios/blob/master/README.md>
 
 ## Table of contents
 
 Use for instance <https://github.com/ekalinin/github-markdown-toc>:
 
-> * [Title / Repository Name](#title--repository-name)
+> * [Title / Repository Name](#Cybersecurity-Based-Knowledge-Management-System)
 >   * [About / Synopsis](#about--synopsis)
 >   * [Table of contents](#table-of-contents)
 >   * [Installation](#installation)
@@ -32,7 +34,7 @@ Use for instance <https://github.com/ekalinin/github-markdown-toc>:
 >   * [Resources (Documentation and other links)](#resources-documentation-and-other-links)
 >   * [Contributing / Reporting issues](#contributing--reporting-issues)
 >   * [License](#license)
->   * [About Nuxeo](#about-nuxeo)
+>   * [Development Team](#Development-Team)
 
 ## Installation
 
@@ -92,15 +94,29 @@ Link to JIRA component (or project if there is no component for that project). S
 
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-## About Nuxeo
+## Development Team
 
-Nuxeo Content Platform is an open source Enterprise Content Management platform, written in Java. Data can be stored in both SQL & NoSQL databases.
+#### person
+* project position
+* github account
+* contact info
 
-The development of the Nuxeo Content Platform is mostly done by Nuxeo employees with an open development model.
+#### person
+* project position
+* github account
+* contact info
 
-The source code, documentation, roadmap, issue tracker, testing, benchmarks are all public.
+#### person
+* project position
+* github account
+* contact info
 
-Typically, Nuxeo users build different types of information management solutions for [document management](https://www.nuxeo.com/products/document-management/), [case management](https://www.nuxeo.com/products/case-management/), and [digital asset management](https://www.nuxeo.com/products/digital-asset-management/), use cases. It uses schema-flexible metadata & content models that allows content to be repurposed to fulfill future use cases.
+#### person
+* project position
+* github account
+* contact info
 
-More information is available at [www.nuxeo.com](http://www.nuxeo.com).
-
+#### person
+* project position
+* github account
+* contact info
