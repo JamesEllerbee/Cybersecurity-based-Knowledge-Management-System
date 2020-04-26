@@ -16,8 +16,6 @@ Our team will deploy a solution using web technologies in order to be accessible
 
 ## Table of contents
 
-Use for instance <https://github.com/ekalinin/github-markdown-toc>:
-
 > * [Title / Repository Name](#Cybersecurity-Based-Knowledge-Management-System)
 >   * [About / Synopsis](#about--synopsis)
 >   * [Table of contents](#table-of-contents)
@@ -35,6 +33,7 @@ Use for instance <https://github.com/ekalinin/github-markdown-toc>:
 >   * [Contributing / Reporting issues](#contributing--reporting-issues)
 >   * [License](#license)
 >   * [Development Team](#Development-Team)
+>   * [Acknowledgements](#Acknowledgements)
 
 ## Installation
 
@@ -96,27 +95,26 @@ Link to JIRA component (or project if there is no component for that project). S
 
 ## Development Team
 
-#### person
-* project position
-* github account
-* contact info
+#### Peter Keres
+* [GitHub Account](https://github.com/peterkeres)
+* <keres_peter@columbusstate.edu>
 
-#### person
-* project position
-* github account
-* contact info
+#### James Ellerbee
+* [GitHub Account](https://github.com/JamesEllerbee)
+* <ellerbee_james1@columbusstate.edu>
 
-#### person
-* project position
-* github account
-* contact info
+#### Taylor Woods
+* [GitHub Account](https://github.com/Woods-Taylor)
+* <woods_taylor@columbusstate.edu>
 
-#### person
-* project position
-* github account
-* contact info
+#### Jeffery Hardin
+* [GitHub Account](https://github.com/HardinScott)
+* <hardin_jeffrey1@columbusstate.edu>
 
-#### person
-* project position
-* github account
-* contact info
+#### Alexander Hewit
+* [GitHub Account](https://github.com/Toxic5863)
+* <hewitt_alexander@columbusstate.edu>
+
+
+## Acknowledgements
+We would like to thank both of our sponsors Yaojie Li, Yoon Lee, and Yi Zhou. For their guidance and wisdom during the development of this application.
