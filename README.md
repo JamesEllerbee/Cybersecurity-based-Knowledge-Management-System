@@ -20,6 +20,13 @@ Our team will deploy a solution using web technologies in order to be accessible
 >   * [About / Synopsis](#about--synopsis)
 >   * [Table of contents](#table-of-contents)
 >   * [Installation](#installation)
+>       * [Recommendations](#Recommendations)
+>       * [Python](#Python)
+>           * [Python install with zip](#Python-install-with-zip)
+>           * [Python install command line](#Python-install-command-line)
+>       * [Django](#Django)
+>           * [pip install (optional)](#pip-install-(optional))
+>           * [Django install command line](#Django-install-command-line)
 >   * [Usage](#usage)
 >     * [Screenshots](#screenshots)
 >     * [Features](#features)
@@ -37,10 +44,76 @@ Our team will deploy a solution using web technologies in order to be accessible
 
 ## Installation
 
-Sample:
+### Recommendations
+we suggest using a UNIX based environment to run/build the application. This would include macOS, linux, and WSL.
+
+**Note:** 
+A windows based system is possible, but extra packages/library's might be needed and we do not guarantee its validity. 
+
+### Python
+The python programming languages is needed because the app is built with the django library that uses python. Install version 3.6 of python. We recommend against the use of v2 because of its connectivity with the Django library. You can install it though the zip installer or though the command line. 
+
+#### Python install with zip:
+[python v3](https://www.python.org/downloads/)
+
+#### Python install command line:
+>
+> `sudo apt-get update`
+>
+> `sudo apt-get install python3.6`
+
+verify the install
+> `python3 --version`
+
+### Django
+Is the library that builds our application. [Django](https://docs.djangoproject.com/en/3.0/topics/install/) recommends that you use `pip` to install the django library. If your system does not have pip installed, you will need to do so. 
+
+#### pip install (optional):
+> `sudo apt-get update`
+>
+> `sudo apt install python3-pip`
+
+verify the install
+> `pip3 --version`
+
+#### Django install command line:
+> `python3 -m pip3 install Django`
+
+verify the install
+> `python3`
+>
+> `import django`
+>
+> `django.get_version()`
+>
+> `quit()`
+
+### PostgreSQL
+Django by default uses the [SQLite](https://www.sqlite.org/index.html) DBMS, but we decide to swap over to the PostgreSQL DBMS. Because PostgreSQL needs sever to host its data on, we need to create and run this server locally.
+
+#### PostgreSQL install:
+> `sudo apt-get install python3-dev libpq-dev postgresql postgresql-contrib`
+
+#### PostgresSQL local database:
+> `sudo su -postgres`
+>
+> `psql`
+>
+> `CREATE DATABASE postgres;`
+>
+> `CREATE USER runner WITH PASSWORD 'password';`
+>
+> `GRANT ALL PRIVILEGES ON DATABASE postgres TO runner;`
+>
+> `\q`
+
+#### PostgresSQL 
+
+
 
 * From the Nuxeo Marketplace: install [the Sample Nuxeo Package](https://connect.nuxeo.com/nuxeo/site/marketplace/package/nuxeo-sample).
-* From the command line: `nuxeoctl mp-install nuxeo-sample`
+##### From the command line 
+>`nuxeoctl mp-install nuxeo-sample`
 
 ## Usage
 
