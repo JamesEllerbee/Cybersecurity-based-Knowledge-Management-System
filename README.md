@@ -122,6 +122,17 @@ Django by default uses the [SQLite](https://www.sqlite.org/index.html) DBMS, but
 
 ### Features
 
+| # | Feature | Details | Status |
+|---|---------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------:|:------:|
+| 1 | Login portal | The system is protected via a login portal | :heavy_check_mark: |
+| 2 | Question query | enter my questions regarding Cyber Security topics on threats, assets, and advice on what to do | :heavy_check_mark: |
+| 3 | Submit new questions | If a question returns no answer, user should be able to submit a new question | :heavy_check_mark: |
+| 4 | Experts and colleagues can answer questions | The knowledge base should be provided by experts and questions should be answered by colleagues. | :heavy_check_mark: |
+| 5 | List of relevant threats to the asset | Quickly select an asset from a dropdown list and see a list of relevant threats to that asset. Also have the ability to add a new threat | :heavy_check_mark: |
+| 6 | Up-vote down-vote system | Answers should be voted on by users | :heavy_check_mark: |
+| 7 | Admins approve additions | Only admin users should be able to approve new security related answers | :x: |
+
+
 ### Screenshots
 
 ## Code
