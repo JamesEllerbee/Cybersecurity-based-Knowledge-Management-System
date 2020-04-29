@@ -31,6 +31,9 @@ Our team will deploy a solution using web technologies in order to be accessible
 >           * [Load local database](#Load-local-database)
 >   * [Code](#code)
 >     * [Build](#build)
+>         * [Start the postgres server](#Start-the-postgres-server)
+>         * [Update database (optional)](#Update-database-(optional))
+>         * [Start the web application](#Start-the-web-application)   
 >   * [Usage](#usage)
 >     * [Features](#features)
 >   * [Resources (Documentation and other links)](#resources-documentation-and-other-links)
@@ -48,7 +51,7 @@ We suggest using a UNIX based environment to run/build the application. This wou
 A windows based system is possible, but extra packages/library's might be needed and we do not guarantee its validity. 
 
 ### Python
-The python programming languages is needed because the app is built with the django library that uses python. Install version 3.6 of python. We recommend against the use of v2 because of its connectivity with the Django library. You can install it though the zip installer or though the command line. 
+The [python](https://www.python.org/) programming languages is needed because the app is built with the django library that uses python. Install version 3.6 of python. We recommend against the use of v2 because of its connectivity with the Django library. You can install it though the zip installer or though the command line. 
 
 #### Install with zip:
 [python v3](https://www.python.org/downloads/)
@@ -62,6 +65,19 @@ verify the install
 ```bash
 $ python3 --version
 ```
+
+#### Install Pycurl library:
+We use the [Pycurl library](https://pypi.org/project/pycurl/) to handle some URL requests, so this will need to be installed as well.
+
+First, we need to make sure some dependceies of pycurl are installed
+```bash
+$ sudo apt install libcur14-openssl-dev libssl-dev
+```
+
+Now we can install pycurl
+```bash
+$ pip3 install pycurl
+``` 
 
 ### Django
 Is the library that builds our application. [Django](https://docs.djangoproject.com/en/3.0/topics/install/) recommends that you use `pip` to install the django library. If your system does not have pip installed, you will need to do so. 
@@ -129,9 +145,24 @@ $ python3 manage.py loaddata datadump.json
 ## Code
 
 ### Build
+In order to build and run the application, a few steps need to happen. first, the Postgres server needs to start, then update any data in the database if needed, finally start the server.<br> 
+**NOTE** Once the server starts, you need to open a web browser and go to local host(8000)
 
+#### Start the postgres server:
 ```bash
-     mvn clean install
+$ sudo service postgresql start
+```
+
+#### Update database (optional):
+```bash
+$ python3 manage.py makemigrations
+$ python3 manage.py migrate
+$ python3 manage.py loaddata datadump.json
+```
+
+#### Start the web application:
+```bash
+$ python3 manage.py runserver
 ```
 
 ## Usage
