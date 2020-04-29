@@ -25,6 +25,7 @@ Our team will deploy a solution using web technologies in order to be accessible
 >       * [Django](#Django)
 >           * [pip install (optional)](#pip-install-(optional))
 >           * [Django install command line](#Django-install-command-line)
+>       * [Pycurl](#Install-Pycurl-library)
 >       * [PostgreSQL](#PostgreSQL)
 >           * [Install](#Install)
 >           * [Create local database](#Create-local-database)
@@ -66,19 +67,6 @@ verify the install
 $ python3 --version
 ```
 
-#### Install Pycurl library:
-We use the [Pycurl library](https://pypi.org/project/pycurl/) to handle some URL requests, so this will need to be installed as well.
-
-First, we need to make sure some dependceies of pycurl are installed
-```bash
-$ sudo apt install libcur14-openssl-dev libssl-dev
-```
-
-Now we can install pycurl
-```bash
-$ pip3 install pycurl
-``` 
-
 ### Django
 Is the library that builds our application. [Django](https://docs.djangoproject.com/en/3.0/topics/install/) recommends that you use `pip` to install the django library. If your system does not have pip installed, you will need to do so. 
 
@@ -109,6 +97,19 @@ import django
 django.get_version()
 quit()
 ```
+
+### Install Pycurl library:
+We use the [Pycurl library](https://pypi.org/project/pycurl/) to handle some URL requests, so this will need to be installed as well.
+
+First, we need to make sure some dependceies of pycurl are installed
+```bash
+$ sudo apt install libcur14-openssl-dev libssl-dev
+```
+
+Now we can install pycurl
+```bash
+$ pip3 install pycurl
+``` 
 
 ### PostgreSQL
 Django by default uses the [SQLite](https://www.sqlite.org/index.html) DBMS, but we decide to swap over to the [PostgreSQL](https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04) DBMS. Because PostgreSQL needs sever to host its data on, we need to create and run this server locally.
