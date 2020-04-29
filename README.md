@@ -34,7 +34,8 @@ Our team will deploy a solution using web technologies in order to be accessible
 >     * [Build](#build)
 >         * [Start the postgres server](#Start-the-postgres-server)
 >         * [Update database (optional)](#Update-database-(optional))
->         * [Start the web application](#Start-the-web-application)   
+>         * [Start the web application](#Start-the-web-application)
+>         * [Application running](#Now-the-application-is-running)   
 >   * [Usage](#usage)
 >     * [Features](#features)
 >   * [Resources (Documentation and other links)](#resources-documentation-and-other-links)
@@ -146,8 +147,10 @@ $ python3 manage.py loaddata datadump.json
 ## Code
 
 ### Build
-In order to build and run the application, a few steps need to happen. first, the Postgres server needs to start, then update any data in the database if needed, finally start the server.<br> 
-**NOTE** Once the server starts, you need to open a web browser and go to local host(8000)
+In order to build and run the application, a few steps need to happen. first, the Postgres server needs to start, then update any data in the database if needed, finally start the server.<br>
+##### NOTE: 
+Once the server starts, you need to open a web browser and go to [local host(8000)](http://127.0.0.1:8000).<br>
+If you want to see the admin page for database purposes, go to [/admin](http://127.0.0.1:8000/admin/)
 
 #### Start the postgres server:
 ```bash
@@ -165,6 +168,11 @@ $ python3 manage.py loaddata datadump.json
 ```bash
 $ python3 manage.py runserver
 ```
+
+#### Now the application is running!!!
+To view the main portal, to your [local host(8000)](http://127.0.0.1:8000)<br>
+To view the admin portal for database purposes, go to [/admin](http://127.0.0.1:8000/admin/)<br>
+To stop the server from running, hit `CTRL C` at the terminal. 
 
 ## Usage
 
