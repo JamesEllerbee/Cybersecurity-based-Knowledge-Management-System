@@ -8,11 +8,9 @@ The target users of C-KMS would be company employees who use information systems
 
 Our team will deploy a solution using web technologies in order to be accessible from any device. Our team will strive to develop a system with ease of use along with the necessary structure required to stored data that can answer questions user provide the system along with the ability for data expand ability through content uploaded by users and curated by approved users in the community.
 
-
 * Columbus State University
 * Senior Capstone 
 * Project status: prototype
-
 
 ## Table of contents
 
@@ -22,20 +20,21 @@ Our team will deploy a solution using web technologies in order to be accessible
 >   * [Installation](#installation)
 >       * [Recommendations](#Recommendations)
 >       * [Python](#Python)
->           * [Python install with zip](#Python-install-with-zip)
->           * [Python install command line](#Python-install-command-line)
+>           * [Install with zip](#Install-with-zip)
+>           * [Install command line](#Install-command-line)
 >       * [Django](#Django)
 >           * [pip install (optional)](#pip-install-(optional))
 >           * [Django install command line](#Django-install-command-line)
+>       * [PostgreSQL](#PostgreSQL)
+>           * [Install](#Install)
+>           * [Create local database](#Create-local-database)
+>           * [Load local database](#Load-local-database)
 >   * [Usage](#usage)
->     * [Screenshots](#screenshots)
 >     * [Features](#features)
+>     * [Screenshots](#screenshots)
 >   * [Code](#code)
->     * [Content](#content)
->     * [Requirements](#requirements)
->     * [Limitations](#limitations)
 >     * [Build](#build)
->     * [Deploy (how to install build product)](#deploy-how-to-install-build-product)
+>     * [Limitations](#limitations)
 >   * [Resources (Documentation and other links)](#resources-documentation-and-other-links)
 >   * [Contributing / Reporting issues](#contributing--reporting-issues)
 >   * [License](#license)
@@ -45,7 +44,7 @@ Our team will deploy a solution using web technologies in order to be accessible
 ## Installation
 
 ### Recommendations
-we suggest using a UNIX based environment to run/build the application. This would include macOS, linux, and WSL.
+We suggest using a UNIX based environment to run/build the application. This would include macOS, linux, and WSL.
 
 **Note:** 
 A windows based system is possible, but extra packages/library's might be needed and we do not guarantee its validity. 
@@ -53,10 +52,10 @@ A windows based system is possible, but extra packages/library's might be needed
 ### Python
 The python programming languages is needed because the app is built with the django library that uses python. Install version 3.6 of python. We recommend against the use of v2 because of its connectivity with the Django library. You can install it though the zip installer or though the command line. 
 
-#### Python install with zip:
+#### Install with zip:
 [python v3](https://www.python.org/downloads/)
 
-#### Python install command line:
+#### Install command line:
 >
 > `sudo apt-get update`
 >
@@ -89,12 +88,12 @@ verify the install
 > `quit()`
 
 ### PostgreSQL
-Django by default uses the [SQLite](https://www.sqlite.org/index.html) DBMS, but we decide to swap over to the PostgreSQL DBMS. Because PostgreSQL needs sever to host its data on, we need to create and run this server locally.
+Django by default uses the [SQLite](https://www.sqlite.org/index.html) DBMS, but we decide to swap over to the [PostgreSQL](https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04) DBMS. Because PostgreSQL needs sever to host its data on, we need to create and run this server locally.
 
-#### PostgreSQL install:
+#### Install:
 > `sudo apt-get install python3-dev libpq-dev postgresql postgresql-contrib`
 
-#### PostgresSQL local database:
+#### Create local database:
 > `sudo su -postgres`
 >
 > `psql`
@@ -107,64 +106,65 @@ Django by default uses the [SQLite](https://www.sqlite.org/index.html) DBMS, but
 >
 > `\q`
 
-#### PostgresSQL 
 
-
-
-* From the Nuxeo Marketplace: install [the Sample Nuxeo Package](https://connect.nuxeo.com/nuxeo/site/marketplace/package/nuxeo-sample).
-##### From the command line 
->`nuxeoctl mp-install nuxeo-sample`
+#### Load local database:
+> `python3 manage.py shell`
+>
+> `from django.contrib.contenttypes.models import ContentType`
+>
+> `ContentType.objects.all().delete()`
+>
+> `quit()`
+>
+> `python3 manage.py loaddata datadump.json`
 
 ## Usage
 
-### Screenshots
-
 ### Features
+
+### Screenshots
 
 ## Code
 
 [![Build Status](https://qa.nuxeo.org/jenkins/buildStatus/icon?job=/nuxeo/addons_nuxeo-sample-project-master)](https://qa.nuxeo.org/jenkins/job/nuxeo/job/addons_nuxeo-sample-project-master/)
 
-### Content
-
-Description, sub-modules organization...
-
-### Requirements
-
-See [CORG/Compiling Nuxeo from sources](http://doc.nuxeo.com/x/xION)
-
-Sample: <https://github.com/nuxeo/nuxeo/blob/master/nuxeo-distribution/README.md>
-
-### Limitations
-
-Sample: <https://github.com/nuxeo-archives/nuxeo-features/tree/master/nuxeo-elasticsearch>
-
 ### Build
 
-    mvn clean install
+```bash
+     mvn clean install
+```
 
 Build options:
 
 * ...
 
-### Deploy (how to install build product)
+### Limitations
 
-Direct to MP package if any. Otherwise provide steps to deploy on Nuxeo Platform:
-
- > Copy the built artifacts into `$NUXEO_HOME/templates/custom/bundles/` and activate the `custom` template.
+Sample: <https://github.com/nuxeo-archives/nuxeo-features/tree/master/nuxeo-elasticsearch>
 
 ## Resources (Documentation and other links)
+A collection of visual aids and research papers the team used to better abstract the development this system. The research papers was provided by the clients, while the diagrams where created by the development team to help abstract some of the areas of application. 
+
+##### Research papers:
+
+* [Ontology Security Management](resources/Tsuoumas_&_Gritzalis_2006.pdf)
+* [Ontology Information Security](resources/Ontology_Paper_2007.pdf)
+
+##### Diagrams
+* [Wire-Frame](resources/site_map.pdf)
+* [Technology Stack](resources/techonolgy_stack.pdf)
+* [DataBase Design](resources/Database.pdf)
 
 ## Contributing / Reporting issues
+For [Contributing](https://github.com/JamesEllerbee/Cybersecurity-based-Knowledge-Management-System/pulls), please create a pull request with the title ether being **'New Feature'** or the title that was used when reporting the issue. The pull request should be with a testing branch and not with **'main'**. Any pull request that merges with main will odds are be denied.
 
-Link to JIRA component (or project if there is no component for that project). Samples:
-
-* [Link to component](https://jira.nuxeo.com/issues/?jql=project%20%3D%20NXP%20AND%20component%20%3D%20Elasticsearch%20AND%20Status%20!%3D%20%22Resolved%22%20ORDER%20BY%20updated%20DESC%2C%20priority%20DESC%2C%20created%20ASC)
-* [Link to project](https://jira.nuxeo.com/secure/CreateIssue!default.jspa?project=NXP)
+For [reporting issues](https://github.com/JamesEllerbee/Cybersecurity-based-Knowledge-Management-System/issues), we are using the built in reporting system that github provides. Any bugs or suggestions to the application should be placed there.
 
 ## License
 
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
+* [Python 3](https://docs.python.org/3/license.html)<br>
+* [Django](https://www.djangoproject.com/trademarks/)<br>
+* [PostgreSQL](https://www.postgresql.org/about/licence/)<br>
 
 ## Development Team
 
@@ -187,7 +187,6 @@ Link to JIRA component (or project if there is no component for that project). S
 #### Alexander Hewit
 * [GitHub Account](https://github.com/Toxic5863)
 * <hewitt_alexander@columbusstate.edu>
-
 
 ## Acknowledgements
 We would like to thank both of our sponsors Yaojie Li, Yoon Lee, and Yi Zhou. For their guidance and wisdom during the development of this application.
