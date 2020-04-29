@@ -29,12 +29,10 @@ Our team will deploy a solution using web technologies in order to be accessible
 >           * [Install](#Install)
 >           * [Create local database](#Create-local-database)
 >           * [Load local database](#Load-local-database)
->   * [Usage](#usage)
->     * [Features](#features)
->     * [Screenshots](#screenshots)
 >   * [Code](#code)
 >     * [Build](#build)
->     * [Limitations](#limitations)
+>   * [Usage](#usage)
+>     * [Features](#features)
 >   * [Resources (Documentation and other links)](#resources-documentation-and-other-links)
 >   * [Contributing / Reporting issues](#contributing--reporting-issues)
 >   * [License](#license)
@@ -56,67 +54,85 @@ The python programming languages is needed because the app is built with the dja
 [python v3](https://www.python.org/downloads/)
 
 #### Install command line:
->
-> `sudo apt-get update`
->
-> `sudo apt-get install python3.6`
-
+```bash
+$ sudo apt-get update
+$ sudo apt-get install python3.6
+```
 verify the install
-> `python3 --version`
+```bash
+$ python3 --version
+```
 
 ### Django
 Is the library that builds our application. [Django](https://docs.djangoproject.com/en/3.0/topics/install/) recommends that you use `pip` to install the django library. If your system does not have pip installed, you will need to do so. 
 
 #### pip install (optional):
-> `sudo apt-get update`
->
-> `sudo apt install python3-pip`
+```bash
+$ sudo apt-get update
+$ sudo apt install python3-pip
+```
 
 verify the install
-> `pip3 --version`
+```bash
+$ pip3 --version
+```
 
 #### Django install command line:
-> `python3 -m pip3 install Django`
+```bash
+$ python3 -m pip3 install Django
+```
 
-verify the install
-> `python3`
->
-> `import django`
->
-> `django.get_version()`
->
-> `quit()`
+verify the install by opening the python shell
+```bash
+$ python3
+```
+
+within the python shell
+```python
+import django
+django.get_version()
+quit()
+```
 
 ### PostgreSQL
 Django by default uses the [SQLite](https://www.sqlite.org/index.html) DBMS, but we decide to swap over to the [PostgreSQL](https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04) DBMS. Because PostgreSQL needs sever to host its data on, we need to create and run this server locally.
 
 #### Install:
-> `sudo apt-get install python3-dev libpq-dev postgresql postgresql-contrib`
+```bash
+$ sudo apt-get install python3-dev libpq-dev postgresql postgresql-contrib
+```
 
 #### Create local database:
-> `sudo su -postgres`
->
-> `psql`
->
-> `CREATE DATABASE postgres;`
->
-> `CREATE USER runner WITH PASSWORD 'password';`
->
-> `GRANT ALL PRIVILEGES ON DATABASE postgres TO runner;`
->
-> `\q`
+```bash
+$ sudo su -postgres
+$ psql
 
+CREATE DATABASE postgres;
+CREATE USER runner WITH PASSWORD 'password';
+GRANT ALL PRIVILEGES ON DATABASE postgres TO runner;
+\q
+```
 
 #### Load local database:
-> `python3 manage.py shell`
->
-> `from django.contrib.contenttypes.models import ContentType`
->
-> `ContentType.objects.all().delete()`
->
-> `quit()`
->
-> `python3 manage.py loaddata datadump.json`
+```bash
+$ python3 manage.py shell
+```
+```python
+from django.contrib.contenttypes.models import ContentType
+ContentType.objects.all().delete()
+quit()
+```
+```bash
+$ python3 manage.py loaddata datadump.json
+```
+
+## Code
+
+### Build
+
+```bash
+     mvn clean install
+```
 
 ## Usage
 
@@ -131,27 +147,6 @@ Django by default uses the [SQLite](https://www.sqlite.org/index.html) DBMS, but
 | 5 | List of relevant threats to the asset | Quickly select an asset from a dropdown list and see a list of relevant threats to that asset. Also have the ability to add a new threat | :heavy_check_mark: |
 | 6 | Up-vote down-vote system | Answers should be voted on by users | :heavy_check_mark: |
 | 7 | Admins approve additions | Only admin users should be able to approve new security related answers | :x: |
-
-
-### Screenshots
-
-## Code
-
-[![Build Status](https://qa.nuxeo.org/jenkins/buildStatus/icon?job=/nuxeo/addons_nuxeo-sample-project-master)](https://qa.nuxeo.org/jenkins/job/nuxeo/job/addons_nuxeo-sample-project-master/)
-
-### Build
-
-```bash
-     mvn clean install
-```
-
-Build options:
-
-* ...
-
-### Limitations
-
-Sample: <https://github.com/nuxeo-archives/nuxeo-features/tree/master/nuxeo-elasticsearch>
 
 ## Resources (Documentation and other links)
 A collection of visual aids and research papers the team used to better abstract the development this system. The research papers was provided by the clients, while the diagrams where created by the development team to help abstract some of the areas of application. 
