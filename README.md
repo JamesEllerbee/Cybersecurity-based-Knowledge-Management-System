@@ -13,10 +13,11 @@ Our team will deploy a solution using web technologies in order to be accessible
 * Project status: prototype
 
 ## Table of contents
-
+## For all users
 > * [Title / Repository Name](#Cybersecurity-Based-Knowledge-Management-System)
 >   * [About / Synopsis](#about--synopsis)
 >   * [Table of contents](#table-of-contents)
+>   * [Required knowledge](#required-knowledge)
 >   * [Installation](#installation)
 >       * [Recommendations](#Recommendations)
 >       * [Python](#Python)
@@ -32,14 +33,27 @@ Our team will deploy a solution using web technologies in order to be accessible
 >   * [Usage](#usage)
 >     * [Features](#features)
 >     * [Screenshots](#screenshots)
+## for developers
 >   * [Code](#code)
 >     * [Build](#build)
 >     * [Limitations](#limitations)
 >   * [Resources (Documentation and other links)](#resources-documentation-and-other-links)
 >   * [Contributing / Reporting issues](#contributing--reporting-issues)
+## for all users
 >   * [License](#license)
 >   * [Development Team](#Development-Team)
 >   * [Acknowledgements](#Acknowledgements)
+
+## Required Knowledge
+* end-user
+     * Familiarity with chosen operating system and its command line interface. Preferably a unix based environment such as macOS or linux. 
+* developer
+     * Familiarity with chosen operating system and its command line interface. Preferably a unix based environment such as macOS or linux. 
+     * Experience with Python.
+     * Familiarity with HTML, CSS and JavaScript.
+     * Expereince with web development. 
+     * Prior expereince with Django is preferable. 
+
 
 ## Installation
 
@@ -119,7 +133,7 @@ Django by default uses the [SQLite](https://www.sqlite.org/index.html) DBMS, but
 > `python3 manage.py loaddata datadump.json`
 
 ## Usage
-
+> 
 ### Features
 
 | # | Feature | Details | Status |
@@ -130,7 +144,7 @@ Django by default uses the [SQLite](https://www.sqlite.org/index.html) DBMS, but
 | 4 | Experts and colleagues can answer questions | The knowledge base should be provided by experts and questions should be answered by colleagues. | :heavy_check_mark: |
 | 5 | List of relevant threats to the asset | Quickly select an asset from a dropdown list and see a list of relevant threats to that asset. Also have the ability to add a new threat | :heavy_check_mark: |
 | 6 | Up-vote down-vote system | Answers should be voted on by users | :heavy_check_mark: |
-| 7 | Admins approve additions | Only admin users should be able to approve new security related answers | :x: |
+| 7 | Admins approve additions | Only admin users should be able to approve new security related threats | :x: |
 
 
 ### Screenshots
@@ -176,6 +190,14 @@ For [reporting issues](https://github.com/JamesEllerbee/Cybersecurity-based-Know
 * [Python 3](https://docs.python.org/3/license.html)<br>
 * [Django](https://www.djangoproject.com/trademarks/)<br>
 * [PostgreSQL](https://www.postgresql.org/about/licence/)<br>
+
+## Installation Help
+* Django
+     * https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction
+
+## Development Help
+* Django
+     * https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/       Tutorial_local_library_website
 
 ## Development Team
 
