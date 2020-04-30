@@ -112,7 +112,7 @@ We use the [Pycurl library](https://pypi.org/project/pycurl/) to handle some URL
 
 First, we need to make sure some dependceies of pycurl are installed
 ```bash
-$ sudo apt install libcur14-openssl-dev libssl-dev
+$ sudo apt install libcurl4-openssl-dev libssl-dev
 ```
 
 Now we can install pycurl
