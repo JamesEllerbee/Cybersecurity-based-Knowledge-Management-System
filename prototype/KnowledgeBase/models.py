@@ -62,10 +62,11 @@ COLUMNS
         is the name of this threat
 '''
 class Threat(models.Model):
-    vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.PROTECT, null=True)
+    vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.PROTECT, null=True, blank=True)
     assetKey = models.ForeignKey('Asset', on_delete=models.CASCADE)
-    adviceKey = models.ForeignKey('Advice', on_delete=models.PROTECT, null=True)
+    adviceKey = models.ForeignKey('Advice', on_delete=models.PROTECT, null=True, blank=True)
     threatName = models.CharField(max_length=100)
+    isApproved = models.BooleanField(default=False)
 
     class meta:
         managed = False
@@ -156,10 +157,10 @@ COLUMNS
 class Vulnerability(models.Model):
     assetKey =  models.ForeignKey('Asset', on_delete=models.CASCADE)
     threatKey = models.ForeignKey('Threat', on_delete=models.CASCADE)
-    attackerKey = models.ForeignKey('Attacker', on_delete=models.PROTECT, null=True)
-    countermeasureKey =models.ForeignKey('Countermeasure', on_delete=models.PROTECT, null=True)
-    ciaaKey = models.ForeignKey('CiaaCategory', on_delete=models.PROTECT, null=True)
-    severityLevelKey = models.ForeignKey('SeverityLevel', on_delete=models.PROTECT, null=True)
+    attackerKey = models.ForeignKey('Attacker', on_delete=models.PROTECT, null=True, blank=True)
+    countermeasureKey =models.ForeignKey('Countermeasure', on_delete=models.PROTECT, null=True, blank=True)
+    ciaaKey = models.ForeignKey('CiaaCategory', on_delete=models.PROTECT, null=True, blank=True)
+    severityLevelKey = models.ForeignKey('SeverityLevel', on_delete=models.PROTECT, null=True, blank=True)
     vulterabilityText = models.CharField(max_length=200)
 
     class meta:
@@ -228,7 +229,7 @@ COLUMNS
         text stating what type of attacker this attacker is
 '''
 class Attacker(models.Model):
-    vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.CASCADE)
+    vulnerabilityKey = models.ForeignKey('Vulnerability', on_delete=models.CASCADE, null=True, blank=True)
     attackerType = models.CharField(max_length=200)
 
     class meta:
@@ -237,7 +238,6 @@ class Attacker(models.Model):
 
     def __str__(self):
         return self.attackerType
-
 
 '''
 TABLE NAME: 
