@@ -130,7 +130,7 @@ $ sudo apt-get install python3-dev libpq-dev postgresql postgresql-contrib
 
 #### Create local database:
 ```bash
-$ sudo su -postgres
+$ sudo su - postgres
 $ psql
 
 CREATE DATABASE postgres;
