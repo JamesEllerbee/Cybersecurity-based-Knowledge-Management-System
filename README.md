@@ -36,7 +36,8 @@ Our team will deploy a solution using web technologies in order to be accessible
 >         * [Start the postgres server](#Start-the-postgres-server)
 >         * [Update database (optional)](#Update-database-(optional))
 >         * [Start the web application](#Start-the-web-application)
->         * [Application running](#Now-the-application-is-running)   
+>         * [Application running](#Now-the-application-is-running)
+>         * [Adding users](#adding-users)
 >   * [Usage](#usage)
 >     * [Features](#features)
 >   * [Resources (Documentation and other links)](#resources-documentation-and-other-links)
@@ -181,6 +182,15 @@ $ python3 manage.py runserver
 To view the main portal, to your [local host(8000)](http://127.0.0.1:8000)<br>
 To view the admin portal for database purposes, go to [/admin](http://127.0.0.1:8000/admin/)<br>
 To stop the server from running, hit `CTRL C` at the terminal. 
+
+### Adding Users
+In order to log into the system, you first from create a 'super user'. From there, you can then access the admin page and add users thought the database portal. 
+
+#### Create super user
+```bash
+$ python3 manage.py createsuperuser
+```
+Then follow the on screen instructions to finish creating the super user. Once finished, you then have full access to the system. 
 
 ## Usage
 
