@@ -142,6 +142,8 @@ GRANT ALL PRIVILEGES ON DATABASE postgres TO runner;
 
 #### Load local database:
 ```bash
+$ python3 manage.py makemigrations
+$ python3 manage.py migrate
 $ python3 manage.py shell
 ```
 ```python
