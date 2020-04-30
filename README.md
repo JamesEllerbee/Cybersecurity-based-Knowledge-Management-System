@@ -17,6 +17,7 @@ Our team will deploy a solution using web technologies in order to be accessible
 > * [Title / Repository Name](#Cybersecurity-Based-Knowledge-Management-System)
 >   * [About / Synopsis](#about--synopsis)
 >   * [Table of contents](#table-of-contents)
+>   * [Required Knowledge](#required-knowledge)
 >   * [Installation](#installation)
 >       * [Recommendations](#Recommendations)
 >       * [Python](#Python)
@@ -43,6 +44,13 @@ Our team will deploy a solution using web technologies in order to be accessible
 >   * [License](#license)
 >   * [Development Team](#Development-Team)
 >   * [Acknowledgements](#Acknowledgements)
+
+## Required Knowledge
+- Familiarity with chosen operating system and its command line interface. Preferably a unix based environment such as macOS or linux.
+- Experience with Python.
+- Familiarity with HTML, CSS and JavaScript.
+- Experience with web development.
+- Prior experience with Django is preferable.
 
 ## Installation
 
@@ -197,6 +205,10 @@ A collection of visual aids and research papers the team used to better abstract
 * [Wire-Frame](resources/site_map.pdf)
 * [Technology Stack](resources/techonolgy_stack.pdf)
 * [DataBase Design](resources/Database.pdf)
+
+##### Installation Guides
+- [Django](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django)
+- [PostgreSQL](https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04)
 
 ## Contributing / Reporting issues
 For [Contributing](https://github.com/JamesEllerbee/Cybersecurity-based-Knowledge-Management-System/pulls), please create a pull request with the title ether being **'New Feature'** or the title that was used when reporting the issue. The pull request should be with a testing branch and not with **'main'**. Any pull request that merges with main will odds are be denied.
