@@ -61,6 +61,9 @@ We suggest using a UNIX based environment to run/build the application. This wou
 **Note:** 
 A windows based system is possible, but extra packages/library's might be needed and we do not guarantee its validity. 
 
+**Note:**
+The manage.py file that is used for alot of the build process, is at `/prototype/manage.py` in the file tree. 
+
 ### Python
 The [python](https://www.python.org/) programming languages is needed because the app is built with the django library that uses python. Install version 3.6 of python. We recommend against the use of v2 because of its connectivity with the Django library. You can install it though the zip installer or though the command line. 
 
