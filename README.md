@@ -118,6 +118,7 @@ $ sudo apt install libcurl4-openssl-dev libssl-dev
 Now we can install pycurl
 ```bash
 $ pip3 install pycurl
+$ pip3 install pysopg2
 ``` 
 
 ### PostgreSQL
